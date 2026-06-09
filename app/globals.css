@@ -49,6 +49,31 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+html {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--background);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid var(--background);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 72%, var(--background));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
 ::selection {
   background: var(--accent-soft);
   color: var(--foreground);
