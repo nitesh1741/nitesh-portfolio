@@ -13,25 +13,43 @@ export function SiteNav({ items }: SiteNavProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const observers = items
-      .map((item) => document.querySelector(item.href))
-      .filter((section): section is Element => Boolean(section));
+    function handleScroll() {
+      // Check if we are at the very bottom of the page
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+      if (isAtBottom && items.length > 0) {
+        setActive(items[items.length - 1].href);
+        return;
+      }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      // Check if we are near the very top of the page
+      if (window.scrollY < 100 && items.length > 0) {
+        setActive(items[0].href);
+        return;
+      }
 
-        if (visible?.target.id) {
-          setActive(`#${visible.target.id}`);
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+      let currentSection = items[0]?.href ?? "#home";
+
+      for (const item of items) {
+        const el = document.querySelector(item.href);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          if (scrollPosition >= top) {
+            currentSection = item.href;
+          }
         }
-      },
-      { rootMargin: "-25% 0px -60% 0px", threshold: [0.15, 0.35, 0.6] },
-    );
+      }
 
-    observers.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+      setActive(currentSection);
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Run once on mount to set initial active state
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [items]);
 
   return (
