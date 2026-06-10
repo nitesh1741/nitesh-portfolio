@@ -21,9 +21,11 @@ export function EducationSection() {
                   {item.institution}
                 </p>
               </div>
-              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--muted)] bg-[var(--surface-strong)] px-2.5 py-1 rounded border border-[color-mix(in_srgb,var(--border)_45%,transparent)] self-start sm:self-auto">
-                {item.duration}
-              </p>
+              {item.duration && (
+                <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--muted)] bg-[var(--surface-strong)] px-2.5 py-1 rounded border border-[color-mix(in_srgb,var(--border)_45%,transparent)] self-start sm:self-auto">
+                  {item.duration}
+                </p>
+              )}
             </div>
             {item.coursework ? (
               <div className="mt-5 flex flex-wrap gap-2">

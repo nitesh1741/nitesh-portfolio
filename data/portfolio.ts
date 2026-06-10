@@ -134,4 +134,19 @@ export const education: Education[] = [
     duration: "August 2020 - June 2024",
     coursework: ["CGPA: 9.13/10", "Ranked top 7% globally (#1,532 of 22,000+) in Google Kick Start 2022", "Solved 3,000+ DSA problems (LeetCode, GFG, CodeChef)"],
   },
+  {
+    degree: "12th Grade",
+    institution: "Greenland International Secondary School - Biratnagar, Nepal",
+    coursework: ["GPA: 3.5/4"],
+  },
+  {
+    degree: "6th - 10th Grade",
+    institution: "Prakashpur Dover English Academy - Prakashpur, Sunsari",
+    coursework: ["GPA: 3.65/4"],
+  },
+  {
+    degree: "Nursery - 5th Grade",
+    institution: "Shanti Public School - Bhokraha Narsing - 01, Sunsari",
+    coursework: ["Percentage: 92%"],
+  },
 ];

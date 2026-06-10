@@ -34,7 +34,7 @@ export type SkillGroup = {
 export type Education = {
   degree: string;
   institution: string;
-  duration: string;
+  duration?: string;
   coursework?: string[];
 };
 
