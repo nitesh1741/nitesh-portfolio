@@ -86,7 +86,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col items-center md:items-end">
           <p className="text-xs font-mono text-[var(--muted)]">
-            Built with <span className="text-[var(--accent)]">Next.js</span> &amp; <span className="text-[var(--accent)]">Tailwind CSS</span>
+            Crafted with <span className="text-[var(--accent)]">&hearts;</span> by Nitesh
           </p>
         </div>
       </div>
