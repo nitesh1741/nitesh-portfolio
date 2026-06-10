@@ -6,6 +6,7 @@ import { ProjectsSection } from "@/components/projects-section";
 import { SkillsSection } from "@/components/skills-section";
 import { EducationSection } from "@/components/education-section";
 import { ContactSection } from "@/components/contact-section";
+import { SiteFooter } from "@/components/site-footer";
 import { navItems, profile, siteUrl } from "@/data/portfolio";
 
 export default function Home() {
@@ -39,6 +40,7 @@ export default function Home() {
         <EducationSection />
         <ContactSection />
       </main>
+      <SiteFooter />
     </>
   );
 }
