@@ -7,7 +7,7 @@ import type {
   SkillGroup,
 } from "@/types/portfolio";
 
-export const siteUrl = "https://nitesh-mehta.vercel.app";
+export const siteUrl = "https://nitesh-mehta.com.np";
 
 export const profile = {
   name: "Nitesh Kumar Mehta",
