@@ -94,4 +94,3 @@ export function SiteNav({ items }: SiteNavProps) {
     </header>
   );
 }
-
