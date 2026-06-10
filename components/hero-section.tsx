@@ -1,4 +1,4 @@
-import { profile, metrics } from "@/data/portfolio";
+import { profile } from "@/data/portfolio";
 
 export function HeroSection() {
   return (
@@ -54,37 +54,15 @@ export function HeroSection() {
         </div>
       </div>
 
-      <aside className="grid content-center gap-5 lg:pb-8 animate-fade-in-up delay-400">
-        <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[var(--shadow)] transition-all duration-300 hover:border-[color-mix(in_srgb,var(--accent)_40%,var(--border))] group relative overflow-hidden">
-          <div className="flex items-center gap-2">
-            <span className="pulse-indicator" />
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
-              availability
-            </span>
-          </div>
-          <p className="mt-3.5 text-xl font-bold tracking-tight text-[var(--foreground)]">
-            Open to impactful software work
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-            Interested in product engineering, frontend systems, and teams
-            that value execution quality.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-2 gap-3">
-          {metrics.map((metric, idx) => (
-            <div
-              key={metric.label}
-              className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all duration-300 hover:border-[var(--accent)] hover:translate-y-[-2px] hover:shadow-md"
-            >
-              <p className="text-3xl font-black tracking-tight text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors duration-300">
-                {metric.value}
-              </p>
-              <p className="mt-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
-                {metric.label}
-              </p>
-            </div>
-          ))}
+      <aside className="flex items-center justify-center lg:justify-end animate-fade-in-up delay-400">
+        {/* Profile Avatar Card */}
+        <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border-2 border-[var(--border)] bg-[var(--surface)] shadow-[var(--shadow)] transition-all duration-500 hover:scale-[1.02] hover:border-[var(--accent)] hover:shadow-[0_0_25px_var(--accent-soft)] group">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 z-10 pointer-events-none" />
+          <img
+            src="/profile.png"
+            alt={profile.name}
+            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-750 group-hover:scale-105"
+          />
         </div>
       </aside>
 
