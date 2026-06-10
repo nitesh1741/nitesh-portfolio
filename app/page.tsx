@@ -17,7 +17,7 @@ export default function Home() {
     jobTitle: profile.role,
     url: siteUrl,
     email: profile.email,
-    sameAs: [profile.linkedin, profile.github],
+    sameAs: [profile.linkedin, profile.github, profile.githubSecondary],
     address: {
       "@type": "PostalAddress",
       addressCountry: "IN",

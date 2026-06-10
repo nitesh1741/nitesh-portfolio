@@ -13,10 +13,42 @@ export function HeroSection() {
       </div>
 
       <div className="max-w-3xl flex flex-col justify-center">
-        <div className="animate-fade-in-up delay-75">
-          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-1.5 text-xs font-semibold tracking-wide uppercase text-[var(--muted)] shadow-sm">
+        <div className="animate-fade-in-up delay-75 mb-6 flex flex-wrap items-center gap-3">
+          <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-1.5 text-xs font-semibold tracking-wide text-[var(--muted)] shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-            {profile.location} / {profile.currentCompany}
+            <span>{profile.location}</span>
+          </p>
+          <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-1.5 text-xs font-semibold tracking-wide text-[var(--muted)] shadow-sm">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-3.5 w-3.5 text-rose-500"
+            >
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>Origin: {profile.origin}</span>
+          </p>
+          <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-1.5 text-xs font-semibold tracking-wide text-[var(--muted)] shadow-sm">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-3.5 w-3.5 text-[var(--accent)]"
+            >
+              <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+            <span>{profile.currentCompany}</span>
           </p>
         </div>
         

@@ -13,6 +13,7 @@ export const profile = {
   name: "Nitesh Kumar Mehta",
   role: "Software Engineer",
   location: "Hyderabad, Telangana, India",
+  origin: "Sunsari, Nepal",
   currentCompany: "CHUBB India",
   intro:
     "High-impact Software Engineer with 2+ years of experience architecting highly concurrent distributed systems and production-grade Agentic AI pipelines.",
@@ -23,6 +24,7 @@ export const profile = {
   email: "niteshmehta1741@gmail.com",
   linkedin: "https://www.linkedin.com/in/niteshkrmehta",
   github: "https://github.com/nitesh1741",
+  githubSecondary: "https://github.com/nitesh-147",
   resume: "/resume.pdf",
 };
 

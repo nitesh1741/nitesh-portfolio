@@ -14,7 +14,7 @@ export function ContactSection() {
           Open to collaborating on impactful software products, hackathons,
           and engineering initiatives.
         </p>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <ContactLink
             label="Email"
             value={profile.email}
@@ -26,11 +26,25 @@ export function ContactSection() {
             href={profile.linkedin}
           />
           <ContactLink
-            label="GitHub"
-            value="View Code"
+            label="GitHub (nitesh1741)"
+            value="Primary Profile"
             href={profile.github}
           />
-          <ContactLink label="Location" value={profile.location} href="#home" />
+          <ContactLink
+            label="GitHub (nitesh-147)"
+            value="Secondary Profile"
+            href={profile.githubSecondary}
+          />
+          <ContactLink 
+            label="Location" 
+            value={profile.location} 
+            href="#home" 
+          />
+          <ContactLink 
+            label="Hometown" 
+            value={profile.origin} 
+            href="#home" 
+          />
         </div>
       </div>
     </Section>
