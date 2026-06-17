@@ -17,10 +17,17 @@ export type Experience = {
 };
 
 export type Project = {
+  slug: string;
   name: string;
+  seoTitle: string;
+  seoDescription: string;
   description: string;
   stack: string[];
   highlights: string[];
+  challenge: string;
+  solution: string;
+  outcome: string;
+  keywords: string[];
   github: string;
   demo: string;
   accent: string;
@@ -38,3 +45,14 @@ export type Education = {
   coursework?: string[];
 };
 
+export type BlogPost = {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  keywords: string[];
+  sections: {
+    heading: string;
+    body: string;
+  }[];
+};

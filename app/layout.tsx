@@ -16,32 +16,51 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Nitesh Kumar | Software Engineer",
+    default: "Nitesh Kumar Mehta | .NET Backend & Agentic AI Engineer",
     template: "%s | Nitesh Kumar",
   },
   description:
-    "Personal portfolio of Nitesh Kumar, a Software Engineer focused on modern frontend systems, product engineering, and reliable web experiences.",
+    "Portfolio of Nitesh Kumar Mehta, a software engineer in Hyderabad building .NET microservices, Azure/Kafka event pipelines, Redis caching systems, and Agentic AI apps.",
   keywords: [
-    "Nitesh Kumar",
-    "Software Engineer",
-    "Frontend Engineer",
-    "React Developer",
-    "Next.js Developer",
+    "Nitesh Kumar Mehta",
+    ".NET Backend Engineer",
+    "Agentic AI Engineer",
+    "Azure Microservices Engineer",
+    "Kafka Software Engineer",
+    "Distributed Systems Engineer",
+    "LangChain Developer",
+    "RAG Developer",
+    "Backend Software Engineer Hyderabad",
+    "Redis Caching",
     "TypeScript",
-    "Portfolio",
   ],
-  authors: [{ name: "Nitesh Kumar" }],
-  creator: "Nitesh Kumar",
+  authors: [{ name: "Nitesh Kumar Mehta" }],
+  creator: "Nitesh Kumar Mehta",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Nitesh Kumar | Software Engineer",
+    title: "Nitesh Kumar Mehta | .NET Backend & Agentic AI Engineer",
     description:
-      "Modern professional portfolio showcasing engineering experience, projects, skills, education, and contact information.",
+      "Backend, cloud, and AI engineering portfolio covering .NET microservices, Azure, Kafka, Redis, LangChain, RAG, and production systems.",
     url: "/",
-    siteName: "Nitesh Kumar Portfolio",
+    siteName: "Nitesh Kumar Mehta Portfolio",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Nitesh Kumar Mehta .NET Backend and Agentic AI Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nitesh Kumar Mehta | .NET Backend & Agentic AI Engineer",
+    description:
+      "Software engineer building .NET microservices, Azure/Kafka pipelines, Redis caching systems, and Agentic AI apps.",
+    images: ["/opengraph-image"],
   },
 };
 

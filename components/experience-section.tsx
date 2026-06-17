@@ -6,7 +6,7 @@ export function ExperienceSection() {
     <Section
       id="experience"
       eyebrow="Experience"
-      title="A timeline of building, shipping, and learning."
+      title=".NET microservices and cloud engineering experience at Chubb."
     >
       <div className="relative grid gap-8 border-l border-[var(--border)] pl-6 ml-2 sm:ml-4">
         {experiences.map((item) => (

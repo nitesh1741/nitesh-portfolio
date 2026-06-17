@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { profile } from "@/data/portfolio";
 
 export function HeroSection() {
@@ -90,10 +91,13 @@ export function HeroSection() {
         {/* Profile Avatar Card */}
         <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border-2 border-[var(--border)] bg-[var(--surface)] shadow-[var(--shadow)] transition-all duration-500 hover:scale-[1.02] hover:border-[var(--accent)] hover:shadow-[0_0_25px_var(--accent-soft)] group">
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 z-10 pointer-events-none" />
-          <img
+          <Image
             src="/profile.png"
-            alt={profile.name}
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-750 group-hover:scale-105"
+            alt={`${profile.name}, ${profile.role}`}
+            fill
+            priority
+            sizes="(min-width: 1024px) 384px, (min-width: 640px) 288px, 256px"
+            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-750 group-hover:scale-105"
           />
         </div>
       </aside>

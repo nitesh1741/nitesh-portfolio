@@ -7,21 +7,58 @@ import { SkillsSection } from "@/components/skills-section";
 import { EducationSection } from "@/components/education-section";
 import { ContactSection } from "@/components/contact-section";
 import { SiteFooter } from "@/components/site-footer";
-import { navItems, profile, siteUrl } from "@/data/portfolio";
+import { education, navItems, profile, projects, siteUrl } from "@/data/portfolio";
 
 export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: profile.name,
-    jobTitle: profile.role,
+    "@type": "ProfilePage",
+    name: `${profile.name} portfolio`,
     url: siteUrl,
-    email: profile.email,
-    sameAs: [profile.linkedin, profile.github, profile.githubSecondary],
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "IN",
+    mainEntity: {
+      "@type": "Person",
+      name: profile.name,
+      jobTitle: profile.role,
+      url: siteUrl,
+      email: profile.email,
+      image: `${siteUrl}/profile.png`,
+      sameAs: [profile.linkedin, profile.github, profile.githubSecondary],
+      knowsAbout: [
+        ".NET Core",
+        "C#",
+        "Kafka",
+        "Azure Service Bus",
+        "Redis caching",
+        "Distributed systems",
+        "Agentic AI",
+        "LangChain",
+        "RAG",
+        "Next.js",
+      ],
+      worksFor: {
+        "@type": "Organization",
+        name: profile.currentCompany,
+      },
+      alumniOf: education[0]
+        ? {
+            "@type": "CollegeOrUniversity",
+            name: education[0].institution,
+          }
+        : undefined,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Hyderabad",
+        addressRegion: "Telangana",
+        addressCountry: "IN",
+      },
     },
+    hasPart: projects.map((project) => ({
+      "@type": "CreativeWork",
+      name: project.name,
+      url: `${siteUrl}/projects/${project.slug}`,
+      description: project.seoDescription,
+      keywords: project.keywords.join(", "),
+    })),
   };
 
   return (

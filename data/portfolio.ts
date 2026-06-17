@@ -11,21 +11,21 @@ export const siteUrl = "https://nitesh-mehta.com.np";
 
 export const profile = {
   name: "Nitesh Kumar Mehta",
-  role: "Software Engineer",
+  role: ".NET Backend & Agentic AI Engineer",
   location: "Hyderabad, Telangana, India",
   origin: "Sunsari, Nepal",
   currentCompany: "CHUBB India",
   intro:
-    "High-impact Software Engineer with 2+ years of experience architecting highly concurrent distributed systems and production-grade Agentic AI pipelines.",
+    "Software engineer building .NET microservices, Azure event pipelines, Kafka workflows, Redis caching systems, and practical Agentic AI applications.",
   summary:
-    "I build distributed backend systems that stay up at scale. At Chubb, I've engineered microservices processing 5,000+ claims per hour, reduced database load by 60% using Redis and in-memory caching strategies, and built event-driven pipelines on Kafka and Azure Service Bus that run reliably in production. I design for failure before I write for success.",
+    "I build distributed backend systems that stay reliable under production load. At Chubb, I engineered .NET Core microservices processing 5,000+ insurance claims per hour, reduced database load by 60% with Redis and in-memory caching, and shipped event-driven pipelines on Kafka and Azure Service Bus with observability built in.",
   interests: ["Distributed Systems", "Cloud-Native Architecture", "Agentic AI", "Event-Driven Architecture"],
-  expertise: [".NET Core", "C#", "Kafka", "Azure", "Kubernetes", "Microservices", "Python", "React", "Next.js"],
+  expertise: [".NET Core", "C#", "Kafka", "Azure Service Bus", "Redis", "Kubernetes", "Microservices", "Python", "LangChain", "React", "Next.js"],
   email: "niteshmehta1741@gmail.com",
   linkedin: "https://www.linkedin.com/in/niteshkrmehta",
   github: "https://github.com/nitesh1741",
   githubSecondary: "https://github.com/nitesh-147",
-  resume: "/resume.pdf",
+  resume: "/nitesh-kumar-mehta-resume.pdf",
 };
 
 export const navItems: NavItem[] = [
@@ -75,7 +75,11 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
+    slug: "stackpilot-agentic-ai-app-builder",
     name: "StackPilot - Agentic AI App Builder",
+    seoTitle: "StackPilot Agentic AI App Builder | LangChain Multi-Agent Project",
+    seoDescription:
+      "Case study for StackPilot, a Python and LangChain multi-agent AI app builder using planner, architect, and coder agents to simulate an end-to-end SDLC.",
     description:
       "Autonomous 3-agent LLM system (Planner, Architect, Coder) using Python and LangChain to simulate a complete end-to-end SDLC.",
     stack: ["Python", "RAG", "Langchain", "Multi-Agent LLM"],
@@ -84,12 +88,23 @@ export const projects: Project[] = [
       "Architected scalable prompt orchestration and inter-agent communication pipelines",
       "Engineered execution pipelines across 3 specialized agents"
     ],
+    challenge:
+      "Prototype software planning often breaks when requirements, architecture decisions, and code generation live in disconnected prompts.",
+    solution:
+      "StackPilot separates planning, architecture, and coding into specialized agents with structured handoffs, retrieval-aware context, and repeatable execution steps.",
+    outcome:
+      "The system reduced early prototype effort by 80% while creating a clearer workflow for validating AI-generated architecture and implementation decisions.",
+    keywords: ["Agentic AI", "LangChain", "RAG", "multi-agent LLM", "AI app builder", "Python"],
     github: "https://github.com/nitesh1741",
     demo: "",
     accent: "from-cyan-500 to-emerald-500",
   },
   {
+    slug: "loksewageeks-digital-education-platform",
     name: "LoksewaGeeks - Digital Education Platform",
+    seoTitle: "LoksewaGeeks Digital Education Platform | Next.js and Python Case Study",
+    seoDescription:
+      "Case study for LoksewaGeeks, a scalable education platform built with Next.js, Python, PostgreSQL, OAuth, MongoDB, and Redis.",
     description:
       "Scaled digital education platform to support 5,000+ projected MAU by architecting modular distributed services across multi-exam domains.",
     stack: ["Python", "Next.js", "PostgreSQL", "OAuth", "MongoDB", "Redis"],
@@ -98,6 +113,13 @@ export const projects: Project[] = [
       "Guaranteed 100% user isolation with Google OAuth and strict RBAC",
       "Designed backend architecture from zero with full ownership"
     ],
+    challenge:
+      "Exam-preparation products need reliable user isolation, fast question delivery, and analytics that can adapt across multiple exam domains.",
+    solution:
+      "LoksewaGeeks uses modular backend services, OAuth-based identity, PostgreSQL and MongoDB storage, Redis-backed performance paths, and a Next.js frontend.",
+    outcome:
+      "The platform architecture supports 5,000+ projected monthly active users and 1,000+ mock questions with personalized performance tracking.",
+    keywords: ["Next.js", "Python backend", "PostgreSQL", "Redis", "OAuth", "education platform"],
     github: "",
     demo: "",
     accent: "from-amber-500 to-rose-500",

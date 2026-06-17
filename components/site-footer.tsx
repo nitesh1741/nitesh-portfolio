@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { profile } from "@/data/portfolio";
 
 export function SiteFooter() {
@@ -16,7 +17,13 @@ export function SiteFooter() {
         </div>
 
         {/* Social Icons Link Row */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-bold uppercase tracking-wider text-[var(--muted)]">
+          <Link href="/projects" className="hover:text-[var(--accent)]">
+            Projects
+          </Link>
+          <Link href="/blog" className="hover:text-[var(--accent)]">
+            Blog
+          </Link>
           <a
             href={`mailto:${profile.email}`}
             className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--muted)] transition-all duration-300 hover:text-[var(--accent)] hover:border-[var(--accent)] hover:translate-y-[-2px]"

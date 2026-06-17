@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Section } from "./section";
 import { projects } from "@/data/portfolio";
 
@@ -6,7 +7,7 @@ export function ProjectsSection() {
     <Section
       id="projects"
       eyebrow="Projects"
-      title="Featured work with clear product outcomes."
+      title="Agentic AI, RAG, and scalable platform engineering projects."
     >
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((project) => (
@@ -44,7 +45,7 @@ export function ProjectsSection() {
             </div>
             
             <h3 className="text-xl font-bold tracking-tight text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors duration-300">
-              {project.name}
+              <Link href={`/projects/${project.slug}`}>{project.name}</Link>
             </h3>
             
             <p className="mt-3.5 leading-relaxed text-[var(--muted)] text-sm">
@@ -95,6 +96,12 @@ export function ProjectsSection() {
                   GitHub
                 </a>
               ) : null}
+              <Link
+                href={`/projects/${project.slug}`}
+                className="inline-flex items-center gap-1.5 text-[var(--foreground)] hover:text-[var(--accent)] transition-colors duration-200 cursor-pointer"
+              >
+                Case Study
+              </Link>
               {project.demo ? (
                 <a
                   href={project.demo}

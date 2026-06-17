@@ -7,12 +7,13 @@ export function ContactSection() {
     <Section
       id="contact"
       eyebrow="Contact"
-      title="Let's build something meaningful together."
+      title="Work with a backend software engineer in Hyderabad."
     >
       <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
         <p className="max-w-2xl text-lg leading-8 text-[var(--muted)]">
-          Open to collaborating on impactful software products, hackathons,
-          and engineering initiatives.
+          Open to backend, cloud, and AI engineering opportunities involving
+          .NET microservices, Azure, Kafka, Redis, RAG systems, and
+          production-grade automation.
         </p>
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <ContactLink

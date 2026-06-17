@@ -7,7 +7,7 @@ export function SkillsSection() {
     <Section
       id="skills"
       eyebrow="Skills"
-      title="Tools and technologies I use to build."
+      title="Backend, cloud, AI, and full-stack engineering skills."
     >
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group) => (

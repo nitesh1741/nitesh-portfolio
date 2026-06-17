@@ -6,7 +6,7 @@ export function EducationSection() {
     <Section
       id="education"
       eyebrow="Education"
-      title="Academic foundation for software work."
+      title="Computer science foundation for backend engineering."
     >
       <div className="grid gap-5">
         {education.map((item) => (
