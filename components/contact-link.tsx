@@ -107,7 +107,7 @@ export function ContactLink({ label, value, href }: Readonly<ContactLinkProps>) 
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noreferrer" : undefined}
-      className="flex items-center gap-4 rounded-md border border-[var(--border)] bg-[var(--background)] p-4.5 transition-all duration-300 hover:border-[var(--accent)] hover:translate-y-[-2px] hover:shadow-sm group cursor-pointer"
+      className="flex items-center gap-4 border border-[var(--border)] bg-[var(--surface)] p-5 transition-all duration-300 hover:border-[var(--accent)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-sm)] group cursor-pointer"
     >
       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--surface-strong)] border border-[color-mix(in_srgb,var(--border)_45%,transparent)] group-hover:border-[var(--accent)] transition-all duration-300">
         {getContactIcon(label)}
