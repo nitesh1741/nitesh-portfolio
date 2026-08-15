@@ -5,40 +5,54 @@ export function ExperienceSection() {
   return (
     <Section
       id="experience"
-      eyebrow="Experience"
-      title=".NET microservices and cloud engineering experience at Chubb."
+      number="02"
+      label="Experience"
+      heading="Engineering at scale — distributed systems in production."
+      className="bg-[var(--bg-alt)]"
     >
-      <div className="relative grid gap-8 border-l border-[var(--border)] pl-6 ml-2 sm:ml-4">
-        {experiences.map((item) => (
+      <div className="grid gap-6">
+        {experiences.map((item, idx) => (
           <article
             key={`${item.company}-${item.duration}`}
-            className="group relative rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm transition-all duration-300 premium-card"
+            className="reveal group relative border border-[var(--border)] bg-[var(--surface)] p-8 transition-all duration-300 hover:border-[var(--accent)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)]"
           >
-            {/* Connected glowing timeline dot */}
-            <span className="absolute -left-[33px] top-7.5 h-3.5 w-3.5 rounded-full border-2 border-[var(--background)] bg-[var(--border)] transition-all duration-300 group-hover:bg-[var(--accent)] group-hover:scale-125 group-hover:shadow-[0_0_8px_var(--accent)]" />
-            
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            {/* Decorative index number */}
+            <span
+              aria-hidden="true"
+              className="absolute top-6 right-8 font-black leading-none select-none pointer-events-none text-[var(--border)] group-hover:text-[color-mix(in_srgb,var(--accent)_18%,var(--border))] transition-colors duration-300"
+              style={{ fontSize: "clamp(2.5rem,6vw,4rem)" }}
+            >
+              {String(idx + 1).padStart(2, "0")}
+            </span>
+
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
               <div>
-                <h3 className="text-xl font-bold tracking-tight text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors duration-300">
-                  {item.position}
-                </h3>
-                <p className="text-sm font-semibold text-[var(--accent)] mt-0.5">
+                <p className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-[var(--accent)] mb-1.5">
                   {item.company}
                 </p>
+                <h3 className="font-display text-2xl text-[var(--fg)] leading-tight">
+                  {item.position}
+                </h3>
               </div>
-              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--muted)] bg-[var(--surface-strong)] px-2.5 py-1 rounded border border-[color-mix(in_srgb,var(--border)_45%,transparent)] self-start sm:self-auto">
+              <span className="shrink-0 self-start font-mono text-xs tracking-wider text-[var(--muted)] border border-[var(--border)] px-3 py-1.5">
                 {item.duration}
-              </p>
+              </span>
             </div>
-            
-            <p className="mt-4 leading-relaxed text-[var(--muted)] text-sm font-medium">
+
+            {/* Description */}
+            <p className="mt-5 text-sm leading-7 text-[var(--muted)]">
               {item.description}
             </p>
-            
-            <ul className="mt-5 grid gap-3 text-sm text-[var(--muted)]">
+
+            {/* Achievements */}
+            <ul className="mt-6 grid gap-3">
               {item.achievements.map((achievement) => (
-                <li key={achievement} className="flex gap-2.5 items-start">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)] opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
+                <li
+                  key={achievement}
+                  className="flex gap-3 items-start text-sm text-[var(--muted)]"
+                >
+                  <span className="mt-[0.6rem] h-px w-4 shrink-0 bg-[var(--accent)] opacity-50 group-hover:opacity-100 group-hover:w-6 transition-all duration-300" />
                   <span className="leading-relaxed">{achievement}</span>
                 </li>
               ))}
