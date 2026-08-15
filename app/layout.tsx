@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { siteUrl } from "@/data/portfolio";
+import { profile, siteUrl } from "@/data/portfolio";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,23 +17,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "Nitesh Kumar Mehta | .NET Backend & Agentic AI Engineer",
-    template: "%s | Nitesh Kumar",
+    template: "%s | Nitesh Kumar Mehta",
   },
   description:
-    "Portfolio of Nitesh Kumar Mehta, a software engineer in Hyderabad building .NET microservices, Azure/Kafka event pipelines, Redis caching systems, and Agentic AI apps.",
-  keywords: [
-    "Nitesh Kumar Mehta",
-    ".NET Backend Engineer",
-    "Agentic AI Engineer",
-    "Azure Microservices Engineer",
-    "Kafka Software Engineer",
-    "Distributed Systems Engineer",
-    "LangChain Developer",
-    "RAG Developer",
-    "Backend Software Engineer Hyderabad",
-    "Redis Caching",
-    "TypeScript",
-  ],
+    "Portfolio of Nitesh Kumar Mehta (Neetesh), a software engineer from Bhokraha, Sunsari, Nepal — now at CHUBB India, Hyderabad — building .NET microservices, Azure/Kafka event pipelines, Redis caching systems, and Agentic AI apps.",
+  keywords: profile.seoKeywords,
   authors: [{ name: "Nitesh Kumar Mehta" }],
   creator: "Nitesh Kumar Mehta",
   alternates: {
@@ -42,16 +30,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Nitesh Kumar Mehta | .NET Backend & Agentic AI Engineer",
     description:
-      "Backend, cloud, and AI engineering portfolio covering .NET microservices, Azure, Kafka, Redis, LangChain, RAG, and production systems.",
+      "Backend, cloud, and AI engineering portfolio — .NET microservices, Azure, Kafka, Redis, LangChain, RAG, and production systems. Engineer from Sunsari, Nepal at CHUBB India, Hyderabad.",
     url: "/",
     siteName: "Nitesh Kumar Mehta Portfolio",
     type: "website",
+    locale: "en_US",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Nitesh Kumar Mehta .NET Backend and Agentic AI Engineer",
+        alt: "Nitesh Kumar Mehta — .NET Backend and Agentic AI Engineer from Nepal, based in Hyderabad",
       },
     ],
   },
@@ -59,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nitesh Kumar Mehta | .NET Backend & Agentic AI Engineer",
     description:
-      "Software engineer building .NET microservices, Azure/Kafka pipelines, Redis caching systems, and Agentic AI apps.",
+      "Software engineer from Sunsari, Nepal — building .NET microservices, Azure/Kafka pipelines, Redis caching, and Agentic AI apps at CHUBB India, Hyderabad.",
     images: ["/opengraph-image"],
   },
 };
@@ -75,6 +64,13 @@ export default function RootLayout({
       data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
+      <head>
+        {/* Geo targeting — current location */}
+        <meta name="geo.region" content="IN-TG" />
+        <meta name="geo.placename" content="Hyderabad, Telangana, India" />
+        <meta name="geo.position" content="17.3850;78.4867" />
+        <meta name="ICBM" content="17.3850, 78.4867" />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
