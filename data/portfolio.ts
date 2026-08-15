@@ -1,15 +1,18 @@
 import type {
   Education,
   Experience,
+  FaqItem,
+  GeoLocation,
   Metric,
   NavItem,
+  Profile,
   Project,
   SkillGroup,
 } from "@/types/portfolio";
 
 export const siteUrl = "https://nitesh-mehta.com.np";
 
-export const profile = {
+export const profile: Profile = {
   name: "Nitesh Kumar Mehta",
   role: ".NET Backend & Agentic AI Engineer",
   location: "Hyderabad, Telangana, India",
@@ -26,6 +29,121 @@ export const profile = {
   github: "https://github.com/nitesh1741",
   githubSecondary: "https://github.com/nitesh-147",
   resume: "/nitesh-kumar-mehta-resume.pdf",
+
+  // ── SEO fields ──────────────────────────────────────────────────────────
+  alternateName: [
+    "Nitesh",
+    "Neetesh",
+    "Nitesh Mehta",
+    "Neetesh Mehta",
+    "Nitesh K. Mehta",
+    "Neetesh Kumar Mehta",
+  ],
+
+  homeLocation: {
+    city: "Hyderabad",
+    district: "Telangana",
+    country: "India",
+  } satisfies GeoLocation,
+
+  birthPlace: {
+    city: "Bhokraha",
+    district: "Sunsari",
+    country: "Nepal",
+  } satisfies GeoLocation,
+
+  // One natural sentence woven into the About section and footer.
+  originSentence:
+    "Originally from Bhokraha, Sunsari, Nepal — now based in Hyderabad, India.",
+
+  // Used in layout.tsx <meta name="keywords"> and globally.
+  seoKeywords: [
+    // Name variants
+    "Nitesh Kumar Mehta",
+    "Nitesh Mehta",
+    "Nitesh",
+    "Neetesh",
+    "Neetesh Mehta",
+    "Neetesh Kumar Mehta",
+    // Role
+    ".NET Backend Engineer",
+    "Agentic AI Engineer",
+    "Software Engineer",
+    "Backend Developer",
+    "Full Stack Engineer",
+    // Geo — current
+    "Software Engineer Hyderabad",
+    "Software Engineer Telangana",
+    "Backend Engineer India",
+    // Geo — origin
+    "Software Engineer Nepal",
+    "Software Engineer Sunsari",
+    "Software Engineer Bhokraha",
+    "Developer from Nepal",
+    "Nepalese Software Engineer",
+    // Employer
+    "CHUBB India Engineer",
+    "Chubb Technology",
+    "Insurance Software Engineer",
+    // Education — KIIT
+    "KIIT Graduate",
+    "KIIT Computer Science",
+    "Kalinga Institute of Industrial Technology",
+    "KIIT Bhubaneswar",
+    // Education — Greenland
+    "Greenland International Secondary School",
+    "Greenland School Biratnagar",
+    // Education — Dover
+    "Prakashpur Dover English Academy",
+    "Dover English Academy Sunsari",
+    // Education — Shanti
+    "Shanti Public School Bhokraha",
+    "Shanti School Sunsari",
+    // Tech
+    "Azure Microservices Engineer",
+    "Kafka Software Engineer",
+    "Redis Caching",
+    "Distributed Systems Engineer",
+    "LangChain Developer",
+    "RAG Developer",
+    "TypeScript",
+    ".NET Core",
+    "C# Developer",
+    "Kubernetes Engineer",
+  ],
+
+  faqItems: [
+    {
+      question: "Who is Nitesh Kumar Mehta?",
+      answer:
+        "Nitesh Kumar Mehta (also spelled Neetesh) is a Software Engineer specialising in .NET Backend and Agentic AI. He currently works at CHUBB India in Hyderabad and is originally from Bhokraha, Sunsari, Nepal.",
+    },
+    {
+      question: "Where does Nitesh Mehta work?",
+      answer:
+        "Nitesh Mehta works as a Software Engineer at CHUBB India in Hyderabad, Telangana, India, building .NET Core microservices, Kafka event pipelines, and Azure-based distributed systems.",
+    },
+    {
+      question: "Where is Nitesh Kumar Mehta from?",
+      answer:
+        "Nitesh Kumar Mehta is originally from Bhokraha, Sunsari, Nepal. He completed his schooling at Shanti Public School in Bhokraha and Prakashpur Dover English Academy in Sunsari before moving to India for higher education.",
+    },
+    {
+      question: "Which school did Nitesh Mehta attend?",
+      answer:
+        "Nitesh Mehta attended Shanti Public School (Bhokraha, Sunsari) for Nursery–5th grade, Prakashpur Dover English Academy (Prakashpur, Sunsari) for 6th–10th grade, and Greenland International Secondary School (Biratnagar, Nepal) for 12th grade.",
+    },
+    {
+      question: "Which university did Nitesh Kumar Mehta graduate from?",
+      answer:
+        "Nitesh Kumar Mehta graduated with a B.Tech in Computer Science and Engineering from KIIT — Kalinga Institute of Industrial Technology, Bhubaneswar, with a CGPA of 9.13/10.",
+    },
+    {
+      question: "What technologies does Nitesh Mehta specialise in?",
+      answer:
+        "Nitesh Mehta specialises in .NET Core, C#, Kafka, Azure Service Bus, Redis, Kubernetes, Python, LangChain, RAG, and Agentic AI. He builds distributed backend systems and multi-agent AI applications.",
+    },
+  ] satisfies FaqItem[],
 };
 
 export const navItems: NavItem[] = [
