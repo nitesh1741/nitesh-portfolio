@@ -12,7 +12,10 @@ export function SiteFooter() {
             &copy; {currentYear} {profile.name}. All rights reserved.
           </p>
           <p className="mt-1 text-xs text-[var(--muted)] opacity-75">
-            Designed & engineered with precision.
+            {profile.role} &middot; {profile.currentCompany} &middot; Hyderabad, India
+          </p>
+          <p className="mt-0.5 text-xs text-[var(--muted)] opacity-50">
+            {profile.originSentence}
           </p>
         </div>
 
