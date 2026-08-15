@@ -26,7 +26,14 @@ export async function generateMetadata({
   return {
     title: project.seoTitle,
     description: project.seoDescription,
-    keywords: project.keywords,
+    keywords: [
+      ...project.keywords,
+      "Nitesh Kumar Mehta",
+      "Neetesh Mehta",
+      "CHUBB India engineer",
+      "Software engineer Nepal",
+      "KIIT graduate",
+    ],
     alternates: {
       canonical: `/projects/${project.slug}`,
     },
@@ -35,6 +42,7 @@ export async function generateMetadata({
       description: project.seoDescription,
       url: `/projects/${project.slug}`,
       type: "article",
+      authors: [profile.name],
     },
   };
 }
@@ -47,27 +55,50 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  const jsonLd = {
+  const creativeWorkJsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: project.name,
     headline: project.seoTitle,
     description: project.seoDescription,
     url: `${siteUrl}/projects/${project.slug}`,
-    author: {
+    dateCreated: "2024-01-01",
+    creator: {
       "@type": "Person",
       name: profile.name,
+      alternateName: profile.alternateName,
       url: siteUrl,
+      jobTitle: profile.role,
+      worksFor: { "@type": "Organization", name: profile.currentCompany },
     },
     keywords: project.keywords.join(", "),
     programmingLanguage: project.stack,
+    about: {
+      "@type": "SoftwareApplication",
+      name: project.name,
+      applicationCategory: "DeveloperApplication",
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Projects", item: `${siteUrl}/projects` },
+      { "@type": "ListItem", position: 3, name: project.name, item: `${siteUrl}/projects/${project.slug}` },
+    ],
   };
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <article className="mx-auto max-w-4xl px-5 py-28 lg:px-8">
         <Link
@@ -79,6 +110,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <h1 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
           {project.name}
         </h1>
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          by{" "}
+          <a href={siteUrl} className="underline underline-offset-2 hover:text-[var(--accent)]">
+            {profile.name}
+          </a>
+        </p>
         <p className="mt-6 text-lg leading-8 text-[var(--muted)]">
           {project.seoDescription}
         </p>
