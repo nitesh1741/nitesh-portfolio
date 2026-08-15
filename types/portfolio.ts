@@ -56,3 +56,38 @@ export type BlogPost = {
     body: string;
   }[];
 };
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type GeoLocation = {
+  city: string;
+  district: string;
+  country: string;
+};
+
+export type Profile = {
+  name: string;
+  role: string;
+  location: string;
+  origin: string;
+  currentCompany: string;
+  intro: string;
+  summary: string;
+  interests: string[];
+  expertise: string[];
+  email: string;
+  linkedin: string;
+  github: string;
+  githubSecondary: string;
+  resume: string;
+  // SEO additions
+  alternateName: string[];
+  homeLocation: GeoLocation;
+  birthPlace: GeoLocation;
+  faqItems: FaqItem[];
+  originSentence: string;
+  seoKeywords: string[];
+};
