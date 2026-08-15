@@ -1,22 +1,44 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { projects, siteUrl } from "@/data/portfolio";
+import { profile, projects, siteUrl } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Backend, Cloud, and Agentic AI Projects",
   description:
-    "Case studies from Nitesh Kumar Mehta covering Agentic AI, LangChain, RAG, Next.js, Python, Redis, PostgreSQL, and scalable backend architecture.",
+    "Engineering case studies by Nitesh Kumar Mehta (Neetesh) — CHUBB India — covering Agentic AI, LangChain, RAG, Next.js, Python, Redis, PostgreSQL, and scalable backend architecture.",
+  keywords: [
+    "Nitesh Kumar Mehta projects",
+    "Neetesh Mehta portfolio",
+    "Agentic AI projects",
+    "LangChain RAG case study",
+    ".NET backend projects",
+    "Python backend engineer Nepal",
+    "CHUBB India engineer projects",
+  ],
   alternates: {
     canonical: "/projects",
+  },
+  openGraph: {
+    title: "Nitesh Kumar Mehta — Backend, Cloud, and Agentic AI Projects",
+    description:
+      "Engineering case studies by Nitesh Kumar Mehta covering Agentic AI, distributed systems, and scalable backends.",
+    url: "/projects",
+    type: "website",
   },
 };
 
 export default function ProjectsPage() {
-  const jsonLd = {
+  const collectionJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Backend, Cloud, and Agentic AI Projects",
+    name: "Backend, Cloud, and Agentic AI Projects by Nitesh Kumar Mehta",
     url: `${siteUrl}/projects`,
+    author: {
+      "@type": "Person",
+      name: profile.name,
+      alternateName: profile.alternateName,
+      url: siteUrl,
+    },
     hasPart: projects.map((project) => ({
       "@type": "CreativeWork",
       name: project.name,
@@ -25,11 +47,34 @@ export default function ProjectsPage() {
     })),
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${siteUrl}/projects`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <section className="mx-auto max-w-6xl px-5 py-28 lg:px-8">
         <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
