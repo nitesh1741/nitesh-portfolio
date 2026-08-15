@@ -5,41 +5,56 @@ export function EducationSection() {
   return (
     <Section
       id="education"
-      eyebrow="Education"
-      title="Computer science foundation for backend engineering."
+      number="06"
+      label="Education"
+      heading="Academic foundation and early years."
+      className="bg-[var(--bg-alt)]"
     >
       <div className="grid gap-5">
-        {education.map((item) => (
-          <article
-            key={item.degree}
-            className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 transition-all duration-300 premium-card"
+        {education.map((item, idx) => (
+          <div
+            key={`${item.degree}-${item.institution}`}
+            className="reveal group flex gap-6 border border-[var(--border)] bg-[var(--surface)] p-6 transition-all duration-300 hover:border-[var(--accent)]"
           >
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <h3 className="text-xl font-bold tracking-tight text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors duration-300">{item.degree}</h3>
-                <p className="mt-1 text-sm font-semibold text-[var(--accent)]">
-                  {item.institution}
-                </p>
+            {/* Index number */}
+            <span
+              aria-hidden="true"
+              className="hidden sm:block font-black text-4xl leading-none shrink-0 select-none text-[var(--border)] group-hover:text-[color-mix(in_srgb,var(--accent)_22%,var(--border))] transition-colors duration-300"
+            >
+              {String(idx + 1).padStart(2, "0")}
+            </span>
+
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+                <div>
+                  <h3 className="font-display text-xl text-[var(--fg)] leading-tight">
+                    {item.degree}
+                  </h3>
+                  <p className="mt-1 font-mono text-[0.62rem] tracking-[0.16em] uppercase text-[var(--accent)]">
+                    {item.institution}
+                  </p>
+                </div>
+                {item.duration && (
+                  <span className="shrink-0 self-start font-mono text-xs text-[var(--muted)] border border-[var(--border)] px-3 py-1">
+                    {item.duration}
+                  </span>
+                )}
               </div>
-              {item.duration && (
-                <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--muted)] bg-[var(--surface-strong)] px-2.5 py-1 rounded border border-[color-mix(in_srgb,var(--border)_45%,transparent)] self-start sm:self-auto">
-                  {item.duration}
-                </p>
+
+              {item.coursework && item.coursework.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {item.coursework.map((note) => (
+                    <span
+                      key={note}
+                      className="border border-[var(--border)] px-3 py-1 font-mono text-xs text-[var(--muted)]"
+                    >
+                      {note}
+                    </span>
+                  ))}
+                </div>
               )}
             </div>
-            {item.coursework ? (
-              <div className="mt-5 flex flex-wrap gap-2">
-                {item.coursework.map((course) => (
-                  <span
-                    key={course}
-                    className="rounded-full bg-[var(--surface-strong)] border border-[color-mix(in_srgb,var(--border)_45%,transparent)] px-3 py-1 text-xs font-bold text-[var(--muted)] transition-colors duration-200 hover:text-[var(--accent)] hover:border-[var(--accent)]"
-                  >
-                    {course}
-                  </span>
-                ))}
-              </div>
-            ) : null}
-          </article>
+          </div>
         ))}
       </div>
     </Section>
