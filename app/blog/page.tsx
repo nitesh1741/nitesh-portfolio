@@ -1,37 +1,80 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { blogPosts } from "@/data/blog";
-import { siteUrl } from "@/data/portfolio";
+import { profile, siteUrl } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Backend Engineering and Agentic AI Blog",
   description:
-    "Technical articles by Nitesh Kumar Mehta on .NET microservices, Redis caching, Kafka, Azure observability, LangChain, RAG, and Agentic AI.",
+    "Technical articles by Nitesh Kumar Mehta (Neetesh) — software engineer from Sunsari, Nepal at CHUBB India — on .NET microservices, Redis, Kafka, Azure, LangChain, RAG, and Agentic AI.",
+  keywords: [
+    "Nitesh Kumar Mehta blog",
+    "Neetesh Mehta blog",
+    ".NET microservices articles",
+    "Redis caching tutorial",
+    "Kafka consumer guide",
+    "Agentic AI blog",
+    "LangChain RAG blog",
+    "Software engineer Nepal blog",
+    "CHUBB India engineer blog",
+  ],
   alternates: {
     canonical: "/blog",
+  },
+  openGraph: {
+    title: "Nitesh Kumar Mehta — Backend Engineering and Agentic AI Blog",
+    description:
+      "Technical articles on .NET, Redis, Kafka, Azure, and Agentic AI by Nitesh Kumar Mehta.",
+    url: "/blog",
+    type: "website",
   },
 };
 
 export default function BlogPage() {
-  const jsonLd = {
+  const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "Backend Engineering and Agentic AI Blog",
+    name: "Backend Engineering and Agentic AI Blog by Nitesh Kumar Mehta",
     url: `${siteUrl}/blog`,
+    author: {
+      "@type": "Person",
+      name: profile.name,
+      alternateName: profile.alternateName,
+      url: siteUrl,
+      jobTitle: profile.role,
+    },
     blogPost: blogPosts.map((post) => ({
       "@type": "BlogPosting",
       headline: post.title,
       url: `${siteUrl}/blog/${post.slug}`,
       description: post.description,
       datePublished: post.date,
+      author: {
+        "@type": "Person",
+        name: profile.name,
+        url: siteUrl,
+      },
     })),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blog` },
+    ],
   };
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <section className="mx-auto max-w-6xl px-5 py-28 lg:px-8">
         <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
