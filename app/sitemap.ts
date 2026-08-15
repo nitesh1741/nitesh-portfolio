@@ -3,38 +3,38 @@ import { blogPosts } from "@/data/blog";
 import { projects, siteUrl } from "@/data/portfolio";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-06-17");
+  const now = new Date();
 
   return [
     {
       url: siteUrl,
-      lastModified,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: `${siteUrl}/projects`,
-      lastModified,
+      lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.9,
     },
     ...projects.map((project) => ({
       url: `${siteUrl}/projects/${project.slug}`,
-      lastModified,
+      lastModified: now,
       changeFrequency: "monthly" as const,
-      priority: 0.7,
+      priority: 0.8,
     })),
     {
       url: `${siteUrl}/blog`,
-      lastModified,
+      lastModified: now,
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.9,
     },
     ...blogPosts.map((post) => ({
       url: `${siteUrl}/blog/${post.slug}`,
       lastModified: new Date(post.date),
       changeFrequency: "monthly" as const,
-      priority: 0.65,
+      priority: 0.7,
     })),
   ];
 }
