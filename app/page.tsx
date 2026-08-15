@@ -4,6 +4,7 @@ import { AboutSection } from "@/components/about-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { ProjectsSection } from "@/components/projects-section";
 import { SkillsSection } from "@/components/skills-section";
+import { CPSection } from "@/components/cp-section";
 import { EducationSection } from "@/components/education-section";
 import { ContactSection } from "@/components/contact-section";
 import { SiteFooter } from "@/components/site-footer";
@@ -154,12 +155,13 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogItemListJsonLd) }}
       />
       <SiteNav items={navItems} />
-      <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
         <HeroSection />
         <AboutSection />
         <ExperienceSection />
         <ProjectsSection />
         <SkillsSection />
+        <CPSection />
         <EducationSection />
         <ContactSection />
       </main>
