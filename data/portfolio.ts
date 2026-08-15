@@ -1,4 +1,5 @@
 import type {
+  CPProfile,
   Education,
   Experience,
   FaqItem,
@@ -147,11 +148,11 @@ export const profile: Profile = {
 };
 
 export const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
+  { label: "Work", href: "#projects" },
   { label: "Skills", href: "#skills" },
+  { label: "Compete", href: "#compete" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
@@ -290,3 +291,38 @@ export const education: Education[] = [
     coursework: ["Percentage: 92%"],
   },
 ];
+
+// ── Competitive Programming ──────────────────────────────────────
+// NOTE: Verify exact platform-specific counts and profile URLs before deploying.
+// The breakdown below sums to totalSolved; adjust per actual platform stats.
+export const cpProfile: CPProfile = {
+  totalSolved: 3000,
+  platforms: [
+    {
+      name: "LeetCode",
+      handle: "nitesh1741",
+      solvedCount: 1200,
+      url: "https://leetcode.com/u/nitesh1741/",
+    },
+    {
+      name: "GeeksforGeeks",
+      handle: "nitesh1741",
+      solvedCount: 1000,
+      url: "https://www.geeksforgeeks.org/user/nitesh1741/",
+    },
+    {
+      name: "CodeChef",
+      handle: "nitesh1741",
+      solvedCount: 800,
+      url: "https://www.codechef.com/users/nitesh1741",
+    },
+  ],
+  contests: [
+    {
+      name: "Google Kick Start 2022",
+      rank: 1532,
+      totalParticipants: 22000,
+      year: 2022,
+    },
+  ],
+};
