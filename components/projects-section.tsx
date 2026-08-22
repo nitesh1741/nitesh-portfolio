@@ -2,6 +2,7 @@
 
 import { projects } from "@/data/portfolio";
 import { Section } from "@/components/section";
+import Link from "next/link";
 
 export function ProjectsSection() {
   return (
@@ -81,12 +82,12 @@ export function ProjectsSection() {
                   → GitHub
                 </a>
               )}
-              <a
+              <Link
                 href={`/projects/${project.slug}`}
                 className="font-mono text-xs text-[var(--fg-2)] hover:text-[var(--fg)] transition-colors"
               >
                 Case Study →
-              </a>
+              </Link>
             </div>
           </div>
         ))}
@@ -94,12 +95,12 @@ export function ProjectsSection() {
 
       {/* Fix 6: View all projects with reveal, inline-flex, text-xs, tracking, uppercase */}
       <div className="mt-10 text-center reveal">
-        <a
+        <Link
           href="/projects"
           className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
         >
           View all projects →
-        </a>
+        </Link>
       </div>
     </Section>
   );

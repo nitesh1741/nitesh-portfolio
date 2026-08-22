@@ -1,0 +1,24 @@
+import { spawn } from "node:child_process";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+const env = { ...process.env };
+
+delete env.DEBUG;
+delete env.NEXT_TEST_MODE;
+delete env.__NEXT_TEST_MODE;
+
+const nextBin = require.resolve("next/dist/bin/next");
+const child = spawn(process.execPath, [nextBin, "dev", ...process.argv.slice(2)], {
+  env,
+  stdio: "inherit",
+});
+
+child.on("exit", (code, signal) => {
+  if (signal) {
+    process.kill(process.pid, signal);
+    return;
+  }
+
+  process.exit(code ?? 0);
+});

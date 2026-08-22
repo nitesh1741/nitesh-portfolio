@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { renderHook, act, waitFor } from "@testing-library/react";
+import { renderHook, act } from "@testing-library/react";
 import { useTerminalChat } from "@/hooks/use-terminal-chat";
 
 // ─── Mock window.matchMedia (prefers-reduced-motion: reduce) ──────────────────

@@ -57,7 +57,8 @@ export function Section({
         {/* Terminal-style section header */}
         <header className="mb-12 reveal">
           <p className="font-mono text-[0.65rem] tracking-[0.28em] uppercase text-[var(--accent)] mb-3">
-            // {number.padStart(2, "0")}. {label}
+            {"// "}
+            {number.padStart(2, "0")}. {label}
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-[1.08] text-[var(--fg)] max-w-2xl">
             {heading}
