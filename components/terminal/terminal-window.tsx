@@ -20,7 +20,7 @@ export function TerminalWindow() {
 
   // Auto-scroll to latest message
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [messages]);
 
   function handleSuggestion(chip: string) {
@@ -62,7 +62,7 @@ export function TerminalWindow() {
 
       {/* ── Message history ───────────────────────────────────── */}
       <div
-        className="flex-1 overflow-y-auto p-5 space-y-4 min-h-0"
+        className="flex-1 overflow-y-auto p-5 space-y-4 min-h-0 scrollbar-terminal"
         role="log"
         aria-live="polite"
         aria-label="Chat history"

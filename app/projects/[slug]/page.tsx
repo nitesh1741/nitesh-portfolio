@@ -103,9 +103,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <article className="mx-auto max-w-4xl px-5 py-28 lg:px-8">
         <Link
           href="/projects"
-          className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]"
+          className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.14em] uppercase text-[var(--muted)] hover:text-[var(--accent)] transition-colors duration-200 mb-10 group"
         >
-          Projects
+          <span className="text-[var(--accent)] group-hover:-translate-x-0.5 transition-transform duration-200">←</span>
+          Back to Projects
         </Link>
         <h1 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
           {project.name}

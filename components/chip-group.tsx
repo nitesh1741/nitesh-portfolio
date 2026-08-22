@@ -38,7 +38,7 @@ function getCategoryIcon(title: string): ReactNode {
       </svg>
     );
 
-  if (norm.includes("framework") || norm.includes("librar"))
+  if (norm.includes("framework") || norm.includes("librar") || norm.includes("full-stack") || norm.includes("fullstack") || norm.includes("stack"))
     return (
       <svg {...svgProps}>
         <polygon points="12 2 2 7 12 12 22 7 12 2" />
@@ -47,7 +47,18 @@ function getCategoryIcon(title: string): ReactNode {
       </svg>
     );
 
-  if (norm.includes("tool") || norm.includes("cloud") || norm.includes("db") || norm.includes("database"))
+  if (norm.includes("agentic") || norm.includes("llm") || norm.includes("ai & ") || norm.includes("ai engineering"))
+    return (
+      <svg {...svgProps}>
+        <path d="M12 2a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5Z" />
+        <path d="M15 16.5A7 7 0 0 1 5 10" />
+        <path d="M19 10a7 7 0 0 1-2.06 4.94" />
+        <line x1="12" y1="17" x2="12" y2="22" />
+        <line x1="8" y1="22" x2="16" y2="22" />
+      </svg>
+    );
+
+  if (norm.includes("tool") || norm.includes("cloud") || norm.includes("devops") || norm.includes("db") || norm.includes("database"))
     return (
       <svg {...svgProps}>
         <ellipse cx="12" cy="5" rx="9" ry="3" />
