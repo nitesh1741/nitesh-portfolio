@@ -15,6 +15,8 @@ export function TerminalInput({
   onSubmit,
   disabled = false,
 }: TerminalInputProps) {
+  const canSubmit = value.trim().length > 0 && !disabled;
+
   function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter" && !disabled) {
       e.preventDefault();
@@ -26,7 +28,15 @@ export function TerminalInput({
   }
 
   return (
-    <div className="flex items-center gap-2 shrink-0 border-t border-[var(--border)] bg-[var(--terminal-bar)] px-4 py-3">
+    <form
+      className="flex items-center gap-2 shrink-0 border-t border-[var(--border)] bg-[var(--terminal-bar)] px-4 py-3"
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (canSubmit) {
+          onSubmit();
+        }
+      }}
+    >
       <span
         className="font-mono text-sm text-[var(--accent)] select-none shrink-0"
         aria-hidden="true"
@@ -45,12 +55,12 @@ export function TerminalInput({
           aria-label="Chat with Nitesh's AI assistant"
           autoComplete="off"
           spellCheck={false}
-          className="w-full bg-transparent font-mono text-sm text-[var(--fg)] outline-none placeholder:text-[var(--muted)] disabled:opacity-40 caret-transparent"
+          className="w-full bg-transparent font-mono text-sm text-[var(--fg)] outline-none placeholder:text-[var(--muted)] disabled:opacity-40 caret-[var(--accent)]"
         />
         {/* Blinking block cursor shown when input is empty and not disabled */}
         {!value && !disabled && (
           <span
-            className="animate-blink font-mono text-sm text-[var(--accent)] pointer-events-none select-none"
+            className="hidden"
             aria-hidden="true"
           >
             █
@@ -66,6 +76,14 @@ export function TerminalInput({
           █
         </span>
       )}
-    </div>
+      <button
+        type="submit"
+        disabled={!canSubmit}
+        aria-label="Send message"
+        className="grid h-8 w-8 shrink-0 place-items-center rounded-sm border border-[var(--border)] font-mono text-xs text-[var(--accent)] transition-colors hover:border-[var(--accent)] hover:text-[var(--fg)] disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-[var(--border)] disabled:hover:text-[var(--accent)]"
+      >
+        ↵
+      </button>
+    </form>
   );
 }
