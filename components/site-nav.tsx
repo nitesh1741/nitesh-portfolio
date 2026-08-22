@@ -2,11 +2,8 @@
 
 import { useEffect, useState } from "react";
 import type { NavItem } from "@/types/portfolio";
-import { ThemeController } from "./theme-controller";
 
-type SiteNavProps = {
-  items: NavItem[];
-};
+type SiteNavProps = { items: NavItem[] };
 
 export function SiteNav({ items }: Readonly<SiteNavProps>) {
   const [active, setActive] = useState(items[0]?.href ?? "");
@@ -51,7 +48,7 @@ export function SiteNav({ items }: Readonly<SiteNavProps>) {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[color-mix(in_srgb,var(--bg)_88%,transparent)] backdrop-blur-xl border-b border-[var(--border)]"
+          ? "bg-[color-mix(in_srgb,var(--bg)_90%,transparent)] backdrop-blur-xl border-b border-[var(--border)]"
           : "bg-transparent"
       }`}
     >
@@ -68,7 +65,7 @@ export function SiteNav({ items }: Readonly<SiteNavProps>) {
           NK.
         </a>
 
-        {/* Desktop navigation */}
+        {/* Desktop nav */}
         <div className="hidden items-center gap-7 md:flex">
           {items.map((item, idx) => (
             <a
@@ -80,37 +77,31 @@ export function SiteNav({ items }: Readonly<SiteNavProps>) {
                   : "text-[var(--muted)] hover:text-[var(--fg)]"
               }`}
             >
-              {/* Number revealed on hover */}
               <span className="mr-1 text-[0.55rem] text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-200 align-middle">
                 {String(idx + 1).padStart(2, "0")}
               </span>
               {item.label}
-              {/* Active / hover underline */}
               <span
                 className={`absolute -bottom-1 left-0 h-px bg-[var(--accent)] transition-all duration-300 ${
-                  active === item.href
-                    ? "w-full"
-                    : "w-0 group-hover:w-full"
+                  active === item.href ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <ThemeController />
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--fg)] transition-all hover:border-[var(--accent)] md:hidden cursor-pointer"
-          >
-            <span className="text-lg font-light leading-none">
-              {open ? "×" : "≡"}
-            </span>
-          </button>
-        </div>
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          className="inline-flex h-9 w-9 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface)] text-[var(--fg)] transition-all hover:border-[var(--accent)] md:hidden cursor-pointer"
+        >
+          <span className="text-lg font-light leading-none">
+            {open ? "×" : "≡"}
+          </span>
+        </button>
       </nav>
 
       {/* Mobile drawer */}
@@ -122,9 +113,9 @@ export function SiteNav({ items }: Readonly<SiteNavProps>) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`flex items-center gap-4 rounded-md px-4 py-3 font-mono text-xs tracking-wide uppercase transition-all duration-200 ${
+                className={`flex items-center gap-4 rounded-sm px-4 py-3 font-mono text-xs tracking-wide uppercase transition-all duration-200 ${
                   active === item.href
-                    ? "bg-[var(--accent-light)] text-[var(--accent)]"
+                    ? "bg-[var(--accent-bg)] text-[var(--accent)]"
                     : "text-[var(--muted)] hover:bg-[var(--surface)] hover:text-[var(--fg)]"
                 }`}
               >
