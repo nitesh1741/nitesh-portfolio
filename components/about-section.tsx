@@ -1,52 +1,68 @@
-import { Section } from "./section";
-import { profile } from "@/data/portfolio";
+import Image from "next/image";
+import { profile, metrics } from "@/data/portfolio";
+import { Section } from "@/components/section";
+import { MetricsCounter } from "@/components/metrics-counter";
 
 export function AboutSection() {
   return (
     <Section
       id="about"
       number="01"
-      label="About"
-      heading="Backend engineer focused on reliable distributed systems."
+      label="about"
+      heading="Building systems that don't break."
+      className="bg-[var(--bg-alt)]"
     >
-      <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr]">
-
-        {/* Left: Bio + origin */}
-        <div className="reveal flex flex-col gap-6">
-          <p className="text-lg leading-8 text-[var(--muted)]">
+      <div className="grid lg:grid-cols-[1fr_auto] gap-14 items-start">
+        {/* ── Left: Text + Metrics ── */}
+        <div>
+          <p className="reveal text-base sm:text-lg leading-relaxed text-[var(--fg-2)] max-w-xl">
             {profile.summary}
           </p>
-          <p className="text-sm leading-7 text-[var(--muted)] border-l-2 border-[var(--accent)] pl-5 opacity-80">
+          <p className="reveal mt-4 font-mono text-sm text-[var(--muted)]">
             {profile.originSentence}
           </p>
-          {/* Interest chips */}
-          <div className="flex flex-wrap gap-2 pt-1">
-            {profile.interests.map((interest) => (
-              <span
-                key={interest}
-                className="rounded-full border border-[var(--border)] px-4 py-1.5 font-mono text-xs tracking-wide text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-200 cursor-default"
-              >
-                {interest}
-              </span>
-            ))}
+          <div className="reveal mt-10">
+            <MetricsCounter metrics={metrics} />
+          </div>
+
+          {/* CTA links */}
+          <div className="reveal mt-10 flex flex-wrap gap-5">
+            <a
+              href="#projects"
+              className="font-mono text-[0.7rem] tracking-[0.18em] uppercase border border-[var(--fg)] bg-[var(--fg)] text-[var(--bg)] px-6 py-3 transition-all duration-300 hover:bg-transparent hover:text-[var(--fg)]"
+            >
+              View Work
+            </a>
+            <a
+              href={profile.resume}
+              className="font-mono text-[0.7rem] tracking-[0.18em] uppercase border border-[var(--border)] text-[var(--muted)] px-6 py-3 transition-all duration-300 hover:border-[var(--fg)] hover:text-[var(--fg)]"
+            >
+              Resume →
+            </a>
           </div>
         </div>
 
-        {/* Right: Core expertise grid */}
-        <div className="reveal flex flex-col gap-5">
-          <p className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-[var(--accent)]">
-            Core Expertise
-          </p>
-          <div className="grid grid-cols-2 gap-2">
-            {profile.expertise.map((tech) => (
-              <div
-                key={tech}
-                className="flex items-center gap-2.5 border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--fg-2)] hover:border-[var(--accent)] hover:bg-[var(--accent-light)] transition-all duration-200"
-              >
-                <span className="h-1 w-1 rounded-full bg-[var(--accent)] shrink-0" />
-                <span className="leading-snug">{tech}</span>
-              </div>
-            ))}
+        {/* ── Right: Profile photo ── */}
+        <div className="reveal hidden lg:block">
+          <div className="relative w-[240px] h-[310px] overflow-hidden border border-[var(--border)]">
+            {/* Corner accents */}
+            <div
+              className="absolute top-0 right-0 w-6 h-6 z-10 pointer-events-none"
+              style={{ borderTop: "1.5px solid var(--accent)", borderRight: "1.5px solid var(--accent)" }}
+              aria-hidden="true"
+            />
+            <div
+              className="absolute bottom-0 left-0 w-6 h-6 z-10 pointer-events-none"
+              style={{ borderBottom: "1.5px solid var(--accent)", borderLeft: "1.5px solid var(--accent)" }}
+              aria-hidden="true"
+            />
+            <Image
+              src="/profile.jpeg"
+              alt={`${profile.name}, ${profile.role}`}
+              fill
+              sizes="240px"
+              className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            />
           </div>
         </div>
       </div>
