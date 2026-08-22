@@ -1,66 +1,25 @@
-import { Section } from "./section";
-import { ContactLink } from "./contact-link";
 import { profile } from "@/data/portfolio";
+import { Section } from "@/components/section";
+import { ContactLink } from "@/components/contact-link";
 
 export function ContactSection() {
   return (
     <Section
       id="contact"
       number="07"
-      label="Contact"
-      heading="Let's build something together."
+      label="contact"
+      heading="Let's build something."
+      className="bg-[var(--bg-alt)]"
     >
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
+      <p className="reveal font-display text-lg italic text-[var(--fg-2)] mb-10">
+        Open to backend, AI/ML, and full-stack opportunities.
+      </p>
 
-        {/* Left: Invite */}
-        <div className="reveal flex flex-col gap-6">
-          <p className="text-lg leading-8 text-[var(--muted)]">
-            Open to backend, cloud, and AI engineering opportunities involving
-            .NET microservices, Azure, Kafka, Redis, RAG systems, and
-            production-grade automation.
-          </p>
-          <div className="flex flex-col gap-1.5">
-            <p className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-[var(--accent)]">
-              Currently at
-            </p>
-            <p className="font-display text-xl text-[var(--fg)]">
-              {profile.currentCompany}
-            </p>
-            <p className="font-mono text-xs text-[var(--muted)]">
-              {profile.location}
-            </p>
-          </div>
-          <div className="h-px w-full bg-[var(--border)]" />
-          <p className="font-mono text-[0.62rem] tracking-[0.16em] text-[var(--muted)]">
-            {profile.originSentence}
-          </p>
-        </div>
-
-        {/* Right: Contact link grid */}
-        <div className="reveal grid gap-3 sm:grid-cols-2 content-start">
-          <ContactLink
-            label="Email"
-            value={profile.email}
-            href={`mailto:${profile.email}`}
-          />
-          <ContactLink label="LinkedIn" value="Connect" href={profile.linkedin} />
-          <ContactLink
-            label="GitHub (nitesh1741)"
-            value="Primary Profile"
-            href={profile.github}
-          />
-          <ContactLink
-            label="GitHub (nitesh-147)"
-            value="Secondary Profile"
-            href={profile.githubSecondary}
-          />
-          <ContactLink
-            label="Location"
-            value={profile.location}
-            href="#home"
-          />
-          <ContactLink label="Hometown" value={profile.origin} href="#home" />
-        </div>
+      <div className="reveal grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <ContactLink href={profile.github} label="GitHub" external />
+        <ContactLink href={profile.linkedin} label="LinkedIn" external />
+        <ContactLink href={`mailto:${profile.email}`} label={profile.email} />
+        <ContactLink href={profile.resume} label="Resume / CV" external />
       </div>
     </Section>
   );
