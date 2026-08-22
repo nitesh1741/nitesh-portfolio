@@ -46,6 +46,10 @@ html[data-theme="dark"] {
   --border-2:     #2a2a28;
   --terminal-bg:  #0d0d0d;
   --terminal-bar: #1a1a1a;
+  --shadow-sm:    0 1px 4px rgb(0 0 0 / 0.4);
+  --shadow-md:    0 4px 24px rgb(0 0 0 / 0.6);
+  --shadow-lg:    0 16px 64px rgb(0 0 0 / 0.8);
+  --glow-accent:  0 0 24px rgb(74 222 128 / 0.12);
 }
 
 body {
