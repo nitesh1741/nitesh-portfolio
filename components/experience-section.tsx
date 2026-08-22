@@ -1,64 +1,68 @@
-import { Section } from "./section";
 import { experiences } from "@/data/portfolio";
+import { Section } from "@/components/section";
 
 export function ExperienceSection() {
   return (
     <Section
       id="experience"
       number="02"
-      label="Experience"
-      heading="Engineering at scale — distributed systems in production."
-      className="bg-[var(--bg-alt)]"
+      label="experience"
+      heading="Where I've shipped."
+      className="bg-[var(--bg)]"
     >
-      <div className="grid gap-6">
-        {experiences.map((item, idx) => (
-          <article
-            key={`${item.company}-${item.duration}`}
-            className="reveal group relative border border-[var(--border)] bg-[var(--surface)] p-8 transition-all duration-300 hover:border-[var(--accent)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)]"
-          >
-            {/* Decorative index number */}
-            <span
-              aria-hidden="true"
-              className="absolute top-6 right-8 font-black leading-none select-none pointer-events-none text-[var(--border)] group-hover:text-[color-mix(in_srgb,var(--accent)_18%,var(--border))] transition-colors duration-300"
-              style={{ fontSize: "clamp(2.5rem,6vw,4rem)" }}
-            >
-              {String(idx + 1).padStart(2, "0")}
-            </span>
+      <div className="relative">
+        {/* Vertical timeline rail */}
+        <div
+          className="hidden lg:block absolute left-0 top-0 bottom-0 w-px"
+          style={{ background: "var(--border)" }}
+          aria-hidden="true"
+        />
 
-            {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-              <div>
-                <p className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-[var(--accent)] mb-1.5">
-                  {item.company}
-                </p>
-                <h3 className="font-display text-2xl text-[var(--fg)] leading-tight">
-                  {item.position}
-                </h3>
+        <div className="space-y-14">
+          {experiences.map((exp, i) => (
+            <div key={i} className="reveal lg:pl-9 relative">
+              {/* Timeline node */}
+              <div
+                className="hidden lg:block absolute left-0 top-1 h-2.5 w-2.5 rounded-full"
+                style={{
+                  background: "var(--accent)",
+                  transform: "translateX(-4px)",
+                  boxShadow: "0 0 8px var(--accent)",
+                }}
+                aria-hidden="true"
+              />
+
+              <div className="flex flex-wrap items-baseline justify-between gap-3 mb-3">
+                <div>
+                  <span className="font-mono text-xs text-[var(--accent)] tracking-[0.15em] uppercase">
+                    ▸ {exp.company}
+                  </span>
+                  <h3 className="mt-1 font-display text-2xl text-[var(--fg)]">
+                    {exp.position}
+                  </h3>
+                </div>
+                <span className="font-mono text-xs text-[var(--muted)] tracking-wide shrink-0">
+                  {exp.duration}
+                </span>
               </div>
-              <span className="shrink-0 self-start font-mono text-xs tracking-wider text-[var(--muted)] border border-[var(--border)] px-3 py-1.5">
-                {item.duration}
-              </span>
+
+              <p className="text-sm text-[var(--fg-2)] leading-relaxed mb-4 max-w-2xl">
+                {exp.description}
+              </p>
+
+              <ul className="space-y-2.5">
+                {exp.achievements.map((achievement, j) => (
+                  <li key={j} className="flex items-start gap-3 text-sm text-[var(--fg-2)]">
+                    <span className="mt-0.5 shrink-0 font-mono text-[var(--accent)] text-xs">
+                      →
+                    </span>
+                    {achievement}
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            {/* Description */}
-            <p className="mt-5 text-sm leading-7 text-[var(--muted)]">
-              {item.description}
-            </p>
-
-            {/* Achievements */}
-            <ul className="mt-6 grid gap-3">
-              {item.achievements.map((achievement) => (
-                <li
-                  key={achievement}
-                  className="flex gap-3 items-start text-sm text-[var(--muted)]"
-                >
-                  <span className="mt-[0.6rem] h-px w-4 shrink-0 bg-[var(--accent)] opacity-50 group-hover:opacity-100 group-hover:w-6 transition-all duration-300" />
-                  <span className="leading-relaxed">{achievement}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-        ))}
+          ))}
+        </div>
       </div>
     </Section>
   );
