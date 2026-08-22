@@ -1,21 +1,25 @@
-import { Section } from "./section";
-import { ChipGroup } from "./chip-group";
 import { skillGroups } from "@/data/portfolio";
+import { Section } from "@/components/section";
+import { ChipGroup } from "@/components/chip-group";
 
 export function SkillsSection() {
   return (
     <Section
       id="skills"
-      eyebrow="Skills"
-      title="Backend, cloud, AI, and full-stack engineering skills."
+      number="04"
+      label="skills"
+      heading="What I work with."
+      className="bg-[var(--bg)]"
     >
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {skillGroups.map((group) => (
-          <ChipGroup
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {skillGroups.map((group, i) => (
+          <div
             key={group.category}
-            title={group.category}
-            items={group.skills}
-          />
+            className="reveal"
+            style={{ transitionDelay: `${i * 70}ms` }}
+          >
+            <ChipGroup title={group.category} items={group.skills} />
+          </div>
         ))}
       </div>
     </Section>

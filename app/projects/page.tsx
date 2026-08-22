@@ -77,6 +77,15 @@ export default function ProjectsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <section className="mx-auto max-w-6xl px-5 py-28 lg:px-8">
+        {/* Back button */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.14em] uppercase text-[var(--muted)] hover:text-[var(--accent)] transition-colors duration-200 mb-10 group"
+        >
+          <span className="text-[var(--accent)] group-hover:-translate-x-0.5 transition-transform duration-200">←</span>
+          Back to Home
+        </Link>
+
         <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
           Projects
         </p>

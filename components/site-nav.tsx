@@ -2,117 +2,132 @@
 
 import { useEffect, useState } from "react";
 import type { NavItem } from "@/types/portfolio";
-import { ThemeController } from "./theme-controller";
 
-type SiteNavProps = {
-  items: NavItem[];
-};
+type SiteNavProps = { items: NavItem[] };
 
-export function SiteNav({ items }: SiteNavProps) {
-  const [active, setActive] = useState(items[0]?.href ?? "#home");
+export function SiteNav({ items }: Readonly<SiteNavProps>) {
+  const [active, setActive] = useState(items[0]?.href ?? "");
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    function handleScroll() {
-      // Check if we are at the very bottom of the page
-      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+    function onScroll() {
+      setScrolled(window.scrollY > 40);
+
+      const isAtBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 80;
+
       if (isAtBottom && items.length > 0) {
         setActive(items[items.length - 1].href);
         return;
       }
-
-      // Check if we are near the very top of the page
-      if (window.scrollY < 100 && items.length > 0) {
+      if (window.scrollY < 80 && items.length > 0) {
         setActive(items[0].href);
         return;
       }
 
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
-      let currentSection = items[0]?.href ?? "#home";
-
+      const scrollPos = window.scrollY + window.innerHeight / 3;
+      let current = items[0]?.href ?? "";
       for (const item of items) {
         const el = document.querySelector(item.href);
         if (el) {
           const top = el.getBoundingClientRect().top + window.scrollY;
-          if (scrollPosition >= top) {
-            currentSection = item.href;
-          }
+          if (scrollPos >= top) current = item.href;
         }
       }
-
-      setActive(currentSection);
+      setActive(current);
     }
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    // Run once on mount to set initial active state
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, [items]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[color-mix(in_srgb,var(--border)_50%,transparent)] bg-[color-mix(in_srgb,var(--background)_85%,transparent)] backdrop-blur-md transition-all duration-300">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 lg:px-8" aria-label="Primary">
-        <a href="#home" className="group font-mono text-sm font-bold tracking-tight text-[var(--foreground)] flex items-center gap-2">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
-          </span>
-          <span className="transition-colors duration-300 group-hover:text-[var(--accent)]">nitesh.dev</span>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[color-mix(in_srgb,var(--bg)_90%,transparent)] backdrop-blur-xl border-b border-[var(--border)]"
+          : "bg-transparent"
+      }`}
+    >
+      <nav
+        className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 lg:px-8"
+        aria-label="Primary"
+      >
+        {/* Logo */}
+        <a
+          href="#home"
+          className="flex items-center gap-2.5 font-mono text-sm font-bold tracking-[0.18em] uppercase text-[var(--fg)] hover:text-[var(--accent)] transition-colors duration-300"
+        >
+          <span className="inline-block h-2 w-2 rounded-full bg-[var(--accent)] animate-pulse" />
+          NK.
         </a>
 
-        <div className="hidden items-center gap-1 md:flex">
-          {items.map((item) => (
+        {/* Desktop nav */}
+        <div className="hidden items-center gap-7 md:flex">
+          {items.map((item, idx) => (
             <a
               key={item.href}
               href={item.href}
-              className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+              className={`group relative font-mono text-[0.7rem] tracking-[0.14em] uppercase transition-colors duration-200 ${
                 active === item.href
-                  ? "bg-[var(--accent-soft)] text-[var(--accent)]"
-                  : "text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[color-mix(in_srgb,var(--border)_25%,transparent)]"
+                  ? "text-[var(--fg)]"
+                  : "text-[var(--muted)] hover:text-[var(--fg)]"
               }`}
             >
+              <span className="mr-1 text-[0.55rem] text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-200 align-middle">
+                {String(idx + 1).padStart(2, "0")}
+              </span>
               {item.label}
+              <span
+                className={`absolute -bottom-1 left-0 h-px bg-[var(--accent)] transition-all duration-300 ${
+                  active === item.href ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              />
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <ThemeController />
-          <button
-            type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-all hover:border-[var(--accent)] md:hidden cursor-pointer"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            onClick={() => setOpen((value) => !value)}
-          >
-            <span className="text-xl leading-none font-light">{open ? "×" : "+"}</span>
-          </button>
-        </div>
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          className="inline-flex h-9 w-9 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface)] text-[var(--fg)] transition-all hover:border-[var(--accent)] md:hidden cursor-pointer"
+        >
+          <span className="text-lg font-light leading-none">
+            {open ? "×" : "≡"}
+          </span>
+        </button>
       </nav>
 
-      {open ? (
-        <div className="border-t border-[var(--border)] bg-[var(--background)] px-5 py-4 md:hidden animate-fade-in">
-          <div className="mx-auto grid max-w-6xl gap-2">
-            {items.map((item) => (
+      {/* Mobile drawer */}
+      {open && (
+        <div className="border-t border-[var(--border)] bg-[var(--bg)] px-5 py-6 md:hidden animate-fade-in">
+          <div className="mx-auto grid max-w-6xl gap-1">
+            {items.map((item, idx) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`rounded-md px-4 py-3 text-sm font-semibold tracking-wide uppercase transition-all duration-200 ${
+                className={`flex items-center gap-4 rounded-sm px-4 py-3 font-mono text-xs tracking-wide uppercase transition-all duration-200 ${
                   active === item.href
-                    ? "bg-[var(--accent-soft)] text-[var(--accent)]"
-                    : "text-[var(--muted)] hover:bg-[var(--surface-strong)] hover:text-[var(--foreground)]"
+                    ? "bg-[var(--accent-bg)] text-[var(--accent)]"
+                    : "text-[var(--muted)] hover:bg-[var(--surface)] hover:text-[var(--fg)]"
                 }`}
               >
+                <span className="text-[0.55rem] text-[var(--accent)] opacity-60">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
                 {item.label}
               </a>
             ))}
           </div>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }

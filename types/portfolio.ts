@@ -91,3 +91,23 @@ export type Profile = {
   originSentence: string;
   seoKeywords: string[];
 };
+
+export type CPPlatform = {
+  name: string;
+  handle: string;
+  solvedCount: number;
+  url: string;
+};
+
+export type CPContest = {
+  name: string;
+  rank: number;
+  totalParticipants: number;
+  year: number;
+};
+
+export type CPProfile = {
+  totalSolved: number;
+  platforms: CPPlatform[];
+  contests: CPContest[];
+};

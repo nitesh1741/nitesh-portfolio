@@ -1,60 +1,73 @@
 "use client";
 
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import type { ReactNode } from "react";
 
 type SectionProps = {
   id: string;
-  eyebrow: string;
-  title: string;
+  number: string;
+  label: string;
+  heading: string;
   children: ReactNode;
+  className?: string;
 };
 
-export function Section({ id, eyebrow, title, children }: Readonly<SectionProps>) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isRevealed, setIsRevealed] = useState(false);
+export function Section({
+  id,
+  number,
+  label,
+  heading,
+  children,
+  className = "",
+}: Readonly<SectionProps>) {
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const revealEls = section.querySelectorAll<HTMLElement>(".reveal");
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsRevealed(true);
-          observer.unobserve(entry.target);
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).classList.add("revealed");
+            observer.unobserve(entry.target);
+          }
+        });
       },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -80px 0px",
-      }
+      { threshold: 0.08, rootMargin: "0px 0px -50px 0px" },
     );
 
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
+    revealEls.forEach((el, i) => {
+      el.style.transitionDelay = `${i * 70}ms`;
+      observer.observe(el);
+    });
 
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section
+      ref={sectionRef}
       id={id}
-      ref={ref}
-      className={`mx-auto max-w-6xl px-5 py-20 lg:px-8 reveal-on-scroll ${
-        isRevealed ? "revealed" : ""
-      }`}
+      className={`relative py-24 lg:py-32 scroll-mt-24 ${className}`}
     >
-      <div className="mb-10 max-w-3xl">
-        <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">{eyebrow}</p>
-        <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl tracking-tight text-[var(--foreground)]">
-          {title}
-        </h2>
+      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+        {/* Terminal-style section header */}
+        <header className="mb-12 reveal">
+          <p className="font-mono text-[0.65rem] tracking-[0.28em] uppercase text-[var(--accent)] mb-3">
+            {"// "}
+            {number.padStart(2, "0")}. {label}
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-[1.08] text-[var(--fg)] max-w-2xl">
+            {heading}
+          </h2>
+          <div className="mt-5 h-px w-12 bg-[var(--accent)] opacity-60" />
+        </header>
+
+        {children}
       </div>
-      {children}
     </section>
   );
 }

@@ -1,50 +1,68 @@
-import { Section } from "./section";
 import { experiences } from "@/data/portfolio";
+import { Section } from "@/components/section";
 
 export function ExperienceSection() {
   return (
     <Section
       id="experience"
-      eyebrow="Experience"
-      title=".NET microservices and cloud engineering experience at Chubb."
+      number="02"
+      label="experience"
+      heading="Where I've shipped."
+      className="bg-[var(--bg)]"
     >
-      <div className="relative grid gap-8 border-l border-[var(--border)] pl-6 ml-2 sm:ml-4">
-        {experiences.map((item) => (
-          <article
-            key={`${item.company}-${item.duration}`}
-            className="group relative rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm transition-all duration-300 premium-card"
-          >
-            {/* Connected glowing timeline dot */}
-            <span className="absolute -left-[33px] top-7.5 h-3.5 w-3.5 rounded-full border-2 border-[var(--background)] bg-[var(--border)] transition-all duration-300 group-hover:bg-[var(--accent)] group-hover:scale-125 group-hover:shadow-[0_0_8px_var(--accent)]" />
-            
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <h3 className="text-xl font-bold tracking-tight text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors duration-300">
-                  {item.position}
-                </h3>
-                <p className="text-sm font-semibold text-[var(--accent)] mt-0.5">
-                  {item.company}
-                </p>
+      <div className="relative">
+        {/* Vertical timeline rail */}
+        <div
+          className="hidden lg:block absolute left-0 top-0 bottom-0 w-px"
+          style={{ background: "var(--border)" }}
+          aria-hidden="true"
+        />
+
+        <div className="space-y-14">
+          {experiences.map((exp, i) => (
+            <div key={i} className="reveal lg:pl-9 relative">
+              {/* Timeline node */}
+              <div
+                className="hidden lg:block absolute left-0 top-1 h-2.5 w-2.5 rounded-full"
+                style={{
+                  background: "var(--accent)",
+                  transform: "translateX(-4px)",
+                  boxShadow: "0 0 8px var(--accent)",
+                }}
+                aria-hidden="true"
+              />
+
+              <div className="flex flex-wrap items-baseline justify-between gap-3 mb-3">
+                <div>
+                  <span className="font-mono text-xs text-[var(--accent)] tracking-[0.15em] uppercase">
+                    ▸ {exp.company}
+                  </span>
+                  <h3 className="mt-1 font-display text-2xl text-[var(--fg)]">
+                    {exp.position}
+                  </h3>
+                </div>
+                <span className="font-mono text-xs text-[var(--muted)] tracking-wide shrink-0">
+                  {exp.duration}
+                </span>
               </div>
-              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--muted)] bg-[var(--surface-strong)] px-2.5 py-1 rounded border border-[color-mix(in_srgb,var(--border)_45%,transparent)] self-start sm:self-auto">
-                {item.duration}
+
+              <p className="text-sm text-[var(--fg-2)] leading-relaxed mb-4 max-w-2xl">
+                {exp.description}
               </p>
+
+              <ul className="space-y-2.5">
+                {exp.achievements.map((achievement, j) => (
+                  <li key={j} className="flex items-start gap-3 text-sm text-[var(--fg-2)]">
+                    <span className="mt-0.5 shrink-0 font-mono text-[var(--accent)] text-xs">
+                      →
+                    </span>
+                    {achievement}
+                  </li>
+                ))}
+              </ul>
             </div>
-            
-            <p className="mt-4 leading-relaxed text-[var(--muted)] text-sm font-medium">
-              {item.description}
-            </p>
-            
-            <ul className="mt-5 grid gap-3 text-sm text-[var(--muted)]">
-              {item.achievements.map((achievement) => (
-                <li key={achievement} className="flex gap-2.5 items-start">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)] opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
-                  <span className="leading-relaxed">{achievement}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-        ))}
+          ))}
+        </div>
       </div>
     </Section>
   );

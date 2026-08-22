@@ -1,4 +1,5 @@
 import type {
+  CPProfile,
   Education,
   Experience,
   FaqItem,
@@ -14,16 +15,16 @@ export const siteUrl = "https://nitesh-mehta.com.np";
 
 export const profile: Profile = {
   name: "Nitesh Kumar Mehta",
-  role: ".NET Backend & Agentic AI Engineer",
+  role: "Full-Stack, Cloud & Agentic AI Engineer",
   location: "Hyderabad, Telangana, India",
   origin: "Sunsari, Nepal",
   currentCompany: "CHUBB India",
   intro:
-    "Software engineer building .NET microservices, Azure event pipelines, Kafka workflows, Redis caching systems, and practical Agentic AI applications.",
+    "Software engineer building cloud-native Kubernetes infrastructure, .NET full-stack services, Azure Functions pipelines, and Agentic AI applications.",
   summary:
-    "I build distributed backend systems that stay reliable under production load. At Chubb, I engineered .NET Core microservices processing 5,000+ insurance claims per hour, reduced database load by 60% with Redis and in-memory caching, and shipped event-driven pipelines on Kafka and Azure Service Bus with observability built in.",
-  interests: ["Distributed Systems", "Cloud-Native Architecture", "Agentic AI", "Event-Driven Architecture"],
-  expertise: [".NET Core", "C#", "Kafka", "Azure Service Bus", "Redis", "Kubernetes", "Microservices", "Python", "LangChain", "React", "Next.js"],
+    "I build cloud-native infrastructure and full-stack .NET systems at enterprise scale. At Chubb, I architect zero-downtime Kubernetes deployments across 20+ microservices in four global regions, lead disaster recovery provisioning, and ship Azure Functions-backed services. I actively use Agentic AI and Claude Code to accelerate delivery — recognised with the Chubb Excellence Award in Q3 2024.",
+  interests: ["Cloud-Native Architecture", "Agentic AI", "Distributed Systems", "Kubernetes & DevOps"],
+  expertise: [".NET Core", "C#", "Kubernetes", "Azure Functions", "Python", "FastAPI", "Next.js", "Angular", "LangChain", "Claude Code", "PostgreSQL", "Docker"],
   email: "niteshmehta1741@gmail.com",
   linkedin: "https://www.linkedin.com/in/niteshkrmehta",
   github: "https://github.com/nitesh1741",
@@ -141,26 +142,26 @@ export const profile: Profile = {
     {
       question: "What technologies does Nitesh Mehta specialise in?",
       answer:
-        "Nitesh Mehta specialises in .NET Core, C#, Kafka, Azure Service Bus, Redis, Kubernetes, Python, LangChain, RAG, and Agentic AI. He builds distributed backend systems and multi-agent AI applications.",
+        "Nitesh Mehta specialises in .NET Core, C#, Python, Kubernetes, Azure Functions, FastAPI, Next.js, LangChain, RAG, and Agentic AI. He builds cloud-native full-stack systems and LLM-powered applications.",
     },
   ] satisfies FaqItem[],
 };
 
 export const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
+  { label: "Work", href: "#projects" },
   { label: "Skills", href: "#skills" },
+  { label: "Compete", href: "#compete" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const metrics: Metric[] = [
   { label: "Years of Experience", value: "2+" },
-  { label: "Claims Processed/Hr", value: "5,000+" },
-  { label: "DB Load Reduction", value: "60%" },
-  { label: "DSA Problems Solved", value: "3,000+" },
+  { label: "Kubernetes Microservices", value: "20+" },
+  { label: "Global Regions Served", value: "4" },
+  { label: "DSA Problems Solved", value: "2,000+" },
 ];
 
 export const experiences: Experience[] = [
@@ -169,53 +170,54 @@ export const experiences: Experience[] = [
     position: "Software Engineer",
     duration: "June 2024 - Present",
     description:
-      "Architected and shipped scalable .NET Core microservices processing 5,000+ insurance claims per hour, improving system throughput and fault tolerance across distributed services.",
+      "Full-stack and cloud infrastructure engineering across 20+ Kubernetes microservices spanning North America, LATAM, APAC, and Europe — shipping zero-downtime deployments, disaster recovery systems, and Azure Functions-backed services.",
     achievements: [
-      "Slashed API latency by 45% and supported 5,000+ concurrent requests/hour by architecting low-latency .NET Core microservices through async I/O tuning and database access pattern refinements.",
-      "Decreased database load by 60% and accelerated static data retrieval by 3x by implementing a multi-layer distributed caching strategy utilizing Redis and in-memory optimizations.",
-      "Achieved 99.8% reliability for multi-region claim processing workflows by engineering fault-tolerant, event-driven Kafka pipelines featuring idempotent consumers and DLQ routing.",
-      "Reduced incident detection and resolution time by 70% by deploying comprehensive Azure Application Insights observability infrastructure and developing a dynamic middleware FileNoteAPI for enterprise claim-processing.",
+      "Architected zero-downtime blue-green deployment and rollback strategies with security-driven pod lifecycle management across 20+ Kubernetes microservices spanning four global regions — enforcing 90-day pod rotation and enabling instant rollback without redeploying vulnerable builds.",
+      "Spearheaded disaster recovery and multi-region infrastructure provisioning for the full suite of claims-processing APIs, decommissioning 50+ stale duplicate deployments across 13+ APIs to reduce cluster resource overhead.",
+      "Built an attachment processing service from scratch for the File Note API, implementing asynchronous virus scanning, AES encryption, and automated retry via Azure Functions — eliminating manual intervention for failed uploads.",
+      "Actively leverage Claude Code in daily development — Skills, Agents, and structured SDLC methods — applying systematic debugging and structured brainstorming to accelerate delivery.",
+      "Awarded the Chubb Excellence Award (Q3 2024) for outstanding project delivery and end-to-end API ownership.",
     ],
   },
   {
-    company: "Chubb",
-    position: "Technology Intern",
-    duration: "September 2023 - June 2024",
+    company: "CHUBB India",
+    position: "Software Engineer Intern",
+    duration: "September 2023 - May 2024",
     description:
-      "Completed hands-on training in .NET + Angular full-stack development and gained experience with Azure cloud services, CI/CD, and deployment pipelines.",
+      "Structured onboarding in backend and cloud infrastructure — trained on .NET Core and Angular fundamentals within the DCP claims-processing microservices ecosystem.",
     achievements: [
-      "Built backend APIs, handled database integrations (SQL), and implemented best coding practices.",
-      "Developed unit tests (XUnit, JUnit) improving code coverage and stability.",
-      "Collaborated with senior engineers in enterprise-level microservice environments.",
+      "Trained in .NET Core and Angular fundamentals and onboarded onto the Claims processing project, gaining working knowledge of the DCP microservices ecosystem.",
+      "Authored unit tests using XUnit for the DCP Task API (.NET), strengthening test coverage and service reliability.",
+      "Developed a WinForms monitoring tool (.NET / C#) to track Azure Storage Tables and Blobs, improving hardware resource monitoring and data integrity tracking.",
     ],
   },
 ];
 
 export const projects: Project[] = [
   {
-    slug: "stackpilot-agentic-ai-app-builder",
-    name: "StackPilot - Agentic AI App Builder",
-    seoTitle: "StackPilot Agentic AI App Builder | LangChain Multi-Agent Project",
+    slug: "portfolio-chat-agent",
+    name: "Portfolio Chat Agent",
+    seoTitle: "Portfolio Chat Agent | RAG Chatbot with GROQ API and Qdrant",
     seoDescription:
-      "Case study for StackPilot, a Python and LangChain multi-agent AI app builder using planner, architect, and coder agents to simulate an end-to-end SDLC.",
+      "Case study for a conversational AI chat agent built with Python, GROQ API, Qdrant Vector DB, and a RAG pipeline to answer natural language queries about Nitesh Mehta's background and projects.",
     description:
-      "Autonomous 3-agent LLM system (Planner, Architect, Coder) using Python and LangChain to simulate a complete end-to-end SDLC.",
-    stack: ["Python", "RAG", "Langchain", "Multi-Agent LLM"],
+      "Conversational AI agent enabling portfolio visitors to query background, experience, and projects in natural language — powered by a RAG pipeline over a personal knowledge base.",
+    stack: ["Python", "GROQ API", "Qdrant Vector DB", "RAG"],
     highlights: [
-      "Reduced prototype engineering effort by 80%",
-      "Architected scalable prompt orchestration and inter-agent communication pipelines",
-      "Engineered execution pipelines across 3 specialized agents"
+      "Grounded LLM responses in accurate personal context via a RAG pipeline over a Qdrant vector store",
+      "Architected LLM calls via GROQ API with embedding storage for low-latency semantic retrieval",
+      "Deployed as the live chat backend for this portfolio site"
     ],
     challenge:
-      "Prototype software planning often breaks when requirements, architecture decisions, and code generation live in disconnected prompts.",
+      "Portfolio visitors have no structured way to explore background, experience, and projects — static pages force linear reading with no ability to ask targeted questions.",
     solution:
-      "StackPilot separates planning, architecture, and coding into specialized agents with structured handoffs, retrieval-aware context, and repeatable execution steps.",
+      "A RAG-backed conversational agent retrieves relevant personal context from a Qdrant vector store and feeds it to an LLM via GROQ API, grounding every answer in real data.",
     outcome:
-      "The system reduced early prototype effort by 80% while creating a clearer workflow for validating AI-generated architecture and implementation decisions.",
-    keywords: ["Agentic AI", "LangChain", "RAG", "multi-agent LLM", "AI app builder", "Python"],
+      "Visitors can ask questions in plain English and receive grounded, accurate answers about experience, projects, and background — without scrolling through the entire site.",
+    keywords: ["RAG", "GROQ API", "Qdrant", "LangChain", "Agentic AI", "Python", "portfolio chatbot"],
     github: "https://github.com/nitesh1741",
     demo: "",
-    accent: "from-cyan-500 to-emerald-500",
+    accent: "from-violet-500 to-cyan-500",
   },
   {
     slug: "loksewageeks-digital-education-platform",
@@ -246,24 +248,28 @@ export const projects: Project[] = [
 
 export const skillGroups: SkillGroup[] = [
   {
-    category: "Technical Domains",
-    skills: ["Agentic AI", "RAG", "Prompt Engineering", "LLM Orchestration", "Microservices", "Event-Driven Design", "REST APIs", "System Design"]
-  },
-  {
     category: "Languages",
-    skills: ["Python", "Java", "C#", "C++", "JavaScript", "TypeScript"]
+    skills: ["C++", "C#", "Python"]
   },
   {
-    category: "Frameworks & Libraries",
-    skills: [".NET Core", "Spring Boot", "Next.js", "Angular", "React", "LangChain", "CrewAI", "Claude Code"]
+    category: "Full-Stack Development",
+    skills: [".NET Core", "FastAPI", "Next.js", "Angular"]
   },
   {
-    category: "Tools, Cloud & DBs",
-    skills: ["Azure (Functions, Service Bus, App Insights)", "Kafka", "Redis", "Docker", "Kubernetes", "Git", "PostgreSQL", "MongoDB", "Azure SQL", "MySQL"]
+    category: "Agentic AI & LLM Engineering",
+    skills: ["RAG", "Prompt Engineering", "LLM Orchestration", "LangChain", "Claude Code"]
+  },
+  {
+    category: "Cloud & DevOps",
+    skills: ["Azure (Functions, Key Vault, App Insights, Logs, Storage)", "Kubernetes", "Docker", "Git", "GitHub Actions"]
+  },
+  {
+    category: "Databases",
+    skills: ["PostgreSQL", "MySQL", "MongoDB"]
   },
   {
     category: "Certifications",
-    skills: ["Claude 101 - Anthropic", "Responsive Web Design", "Problem Solving (Intermediate) - HackerRank", "React Basic"]
+    skills: ["Claude 101 – Anthropic (LLM agent tooling & prompt engineering)"]
   },
 ];
 
@@ -272,7 +278,7 @@ export const education: Education[] = [
     degree: "B.Tech Computer Science and Engineering",
     institution: "KIIT - Kalinga Institute of Industrial Technology",
     duration: "August 2020 - June 2024",
-    coursework: ["CGPA: 9.13/10", "Ranked top 7% globally (#1,532 of 22,000+) in Google Kick Start 2022", "Solved 3,000+ DSA problems (LeetCode, GFG, CodeChef)"],
+    coursework: ["CGPA: 9.13/10", "Ranked top 7% globally (#1,532 of 22,000+) in Google Kick Start 2022", "Solved 2,000+ DSA problems (LeetCode, CodeChef, Codeforces)"],
   },
   {
     degree: "12th Grade",
@@ -290,3 +296,36 @@ export const education: Education[] = [
     coursework: ["Percentage: 92%"],
   },
 ];
+
+// ── Competitive Programming ──────────────────────────────────────
+export const cpProfile: CPProfile = {
+  totalSolved: 2000,
+  platforms: [
+    {
+      name: "LeetCode",
+      handle: "nitesh1741",
+      solvedCount: 1000,
+      url: "https://leetcode.com/u/nitesh1741/",
+    },
+    {
+      name: "CodeChef",
+      handle: "nitesh1741",
+      solvedCount: 500,
+      url: "https://www.codechef.com/users/nitesh1741",
+    },
+    {
+      name: "Codeforces",
+      handle: "nitesh1741",
+      solvedCount: 100,
+      url: "https://codeforces.com/profile/nitesh1741",
+    },
+  ],
+  contests: [
+    {
+      name: "Google Kick Start 2022",
+      rank: 1532,
+      totalParticipants: 22000,
+      year: 2022,
+    },
+  ],
+};

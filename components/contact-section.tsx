@@ -1,52 +1,25 @@
-import { Section } from "./section";
-import { ContactLink } from "./contact-link";
 import { profile } from "@/data/portfolio";
+import { Section } from "@/components/section";
+import { ContactLink } from "@/components/contact-link";
 
 export function ContactSection() {
   return (
     <Section
       id="contact"
-      eyebrow="Contact"
-      title="Work with a backend software engineer in Hyderabad."
+      number="07"
+      label="contact"
+      heading="Let's build something."
+      className="bg-[var(--bg-alt)]"
     >
-      <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
-        <p className="max-w-2xl text-lg leading-8 text-[var(--muted)]">
-          Open to backend, cloud, and AI engineering opportunities involving
-          .NET microservices, Azure, Kafka, Redis, RAG systems, and
-          production-grade automation.
-        </p>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <ContactLink
-            label="Email"
-            value={profile.email}
-            href={`mailto:${profile.email}`}
-          />
-          <ContactLink
-            label="LinkedIn"
-            value="Connect"
-            href={profile.linkedin}
-          />
-          <ContactLink
-            label="GitHub (nitesh1741)"
-            value="Primary Profile"
-            href={profile.github}
-          />
-          <ContactLink
-            label="GitHub (nitesh-147)"
-            value="Secondary Profile"
-            href={profile.githubSecondary}
-          />
-          <ContactLink 
-            label="Location" 
-            value={profile.location} 
-            href="#home" 
-          />
-          <ContactLink 
-            label="Hometown" 
-            value={profile.origin} 
-            href="#home" 
-          />
-        </div>
+      <p className="reveal font-display text-lg italic text-[var(--fg-2)] mb-10">
+        Open to backend, AI/ML, and full-stack opportunities.
+      </p>
+
+      <div className="reveal grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <ContactLink href={profile.github} label="GitHub" external />
+        <ContactLink href={profile.linkedin} label="LinkedIn" external />
+        <ContactLink href={`mailto:${profile.email}`} label={profile.email} />
+        <ContactLink href={profile.resume} label="Resume / CV" external />
       </div>
     </Section>
   );
