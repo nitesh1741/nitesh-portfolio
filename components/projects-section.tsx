@@ -1,107 +1,85 @@
-import Link from "next/link";
-import { Section } from "./section";
 import { projects } from "@/data/portfolio";
+import { Section } from "@/components/section";
 
 export function ProjectsSection() {
   return (
     <Section
       id="projects"
       number="03"
-      label="Work"
-      heading="Projects built with real engineering decisions."
+      label="projects"
+      heading="Things I've built."
+      className="bg-[var(--bg-alt)]"
     >
-      <div className="grid gap-8">
-        {projects.map((project, idx) => (
-          <article
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project) => (
+          <div
             key={project.slug}
-            className="reveal group border border-[var(--border)] bg-[var(--surface)] p-8 sm:p-10 transition-all duration-300 hover:border-[var(--accent)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)]"
+            className="group flex flex-col border border-[var(--border)] bg-[var(--surface)] p-6 rounded-sm hover:border-[var(--border-2)] transition-all duration-200 reveal"
+            style={{ boxShadow: "none" }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.boxShadow = "var(--shadow-md)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.boxShadow = "none")
+            }
           >
-            {/* Project index + stack row */}
-            <div className="flex items-center gap-3 mb-5">
-              <span className="font-mono text-[0.58rem] tracking-[0.28em] uppercase text-[var(--muted)]">
-                {String(idx + 1).padStart(2, "0")}
-              </span>
-              <div className="h-px w-10 bg-[var(--border)]" />
-              <div className="flex flex-wrap gap-1.5">
-                {project.stack.slice(0, 3).map((tech) => (
-                  <span
-                    key={tech}
-                    className="border border-[var(--border)] px-2.5 py-0.5 font-mono text-[0.58rem] tracking-wide text-[var(--muted)]"
-                  >
-                    {tech}
-                  </span>
-                ))}
-                {project.stack.length > 3 && (
-                  <span className="font-mono text-[0.58rem] text-[var(--muted)] self-center">
-                    +{project.stack.length - 3}
-                  </span>
-                )}
-              </div>
+            {/* Project name */}
+            <h3 className="font-display text-xl text-[var(--fg)] mb-2">
+              {project.name}
+            </h3>
+
+            {/* Description */}
+            <p className="font-sans text-sm text-[var(--fg-2)] leading-relaxed mb-4 flex-1">
+              {project.description}
+            </p>
+
+            {/* Tech chips */}
+            <div className="mb-4 flex flex-wrap gap-2">
+              {project.stack.map((tech) => (
+                <span
+                  key={tech}
+                  className="font-mono text-[0.62rem] px-2 py-0.5 border border-[var(--accent)] text-[var(--accent)] bg-[var(--accent-bg)]"
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
 
-            <div className="grid lg:grid-cols-[1fr_220px] gap-8">
-              {/* Left: name, description, C/S/O */}
-              <div>
-                <h3 className="font-display text-2xl sm:text-3xl text-[var(--fg)] leading-tight mb-3">
-                  {project.name}
-                </h3>
-                <p className="text-sm leading-7 text-[var(--muted)] max-w-2xl">
-                  {project.description}
-                </p>
-
-                {/* Challenge / Solution / Outcome */}
-                <div className="mt-7 grid sm:grid-cols-3 gap-5 border-t border-[var(--border)] pt-6">
-                  {(
-                    [
-                      { label: "Challenge", text: project.challenge },
-                      { label: "Solution", text: project.solution },
-                      { label: "Outcome", text: project.outcome },
-                    ] as const
-                  ).map(({ label, text }) => (
-                    <div key={label}>
-                      <p className="font-mono text-[0.58rem] tracking-[0.22em] uppercase text-[var(--accent)] mb-2">
-                        {label}
-                      </p>
-                      <p className="text-xs leading-5 text-[var(--muted)]">
-                        {text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right: highlights + links */}
-              <div className="flex flex-col gap-5">
-                <div className="border-l-2 border-[var(--border)] pl-4 group-hover:border-[var(--accent)] transition-colors duration-300 flex flex-col gap-2">
-                  {project.highlights.map((h) => (
-                    <p key={h} className="text-xs leading-5 text-[var(--muted)]">
-                      ↗ {h}
-                    </p>
-                  ))}
-                </div>
-
-                <div className="flex flex-col gap-2 mt-auto">
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="inline-flex items-center gap-1.5 font-mono text-xs tracking-wider uppercase text-[var(--accent)] hover:gap-3 transition-all duration-200"
-                  >
-                    Case Study →
-                  </Link>
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 font-mono text-xs tracking-wider uppercase text-[var(--muted)] hover:text-[var(--fg)] transition-colors duration-200"
-                    >
-                      GitHub →
-                    </a>
-                  )}
-                </div>
-              </div>
+            {/* Links */}
+            <div className="flex gap-4">
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs text-[var(--accent)] hover:text-[var(--accent-dim)] transition-colors"
+                >
+                  → Live
+                </a>
+              )}
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs text-[var(--muted)] hover:text-[var(--fg)] transition-colors"
+                >
+                  → GitHub
+                </a>
+              )}
             </div>
-          </article>
+          </div>
         ))}
+      </div>
+
+      {/* View all projects link */}
+      <div className="mt-10 text-center">
+        <a
+          href="/projects"
+          className="font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+        >
+          View all projects →
+        </a>
       </div>
     </Section>
   );
