@@ -27,7 +27,6 @@ export function Section({
     if (!section) return;
 
     const revealEls = section.querySelectorAll<HTMLElement>(".reveal");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -37,7 +36,7 @@ export function Section({
           }
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -60px 0px" },
+      { threshold: 0.08, rootMargin: "0px 0px -50px 0px" },
     );
 
     revealEls.forEach((el, i) => {
@@ -52,30 +51,20 @@ export function Section({
     <section
       ref={sectionRef}
       id={id}
-      className={`relative py-28 scroll-mt-24 ${className}`}
+      className={`relative py-24 lg:py-32 scroll-mt-24 ${className}`}
     >
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
-        {/* Editorial section header */}
-        <header className="mb-16 relative overflow-hidden">
-          {/* Large decorative background number — Geist Sans, not Instrument Serif */}
-          <span
-            aria-hidden="true"
-            className="absolute -top-2 left-0 select-none pointer-events-none font-black leading-none text-[var(--border)]"
-            style={{ fontSize: "clamp(5rem, 14vw, 9rem)" }}
-          >
-            {number}
-          </span>
-          {/* Mono eyebrow label */}
-          <p className="relative pt-12 font-mono text-[0.65rem] tracking-[0.3em] uppercase text-[var(--accent)] mb-2">
-            {label}
+        {/* Terminal-style section header */}
+        <header className="mb-12 reveal">
+          <p className="font-mono text-[0.65rem] tracking-[0.28em] uppercase text-[var(--accent)] mb-3">
+            // {number.padStart(2, "0")}. {label}
           </p>
-          {/* Display heading — Instrument Serif */}
-          <h2 className="relative font-display text-3xl sm:text-4xl lg:text-5xl leading-[1.1] text-[var(--fg)] max-w-2xl">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-[1.08] text-[var(--fg)] max-w-2xl">
             {heading}
           </h2>
-          {/* Accent rule */}
-          <div className="mt-5 h-px w-14 bg-[var(--accent)] opacity-70" />
+          <div className="mt-5 h-px w-12 bg-[var(--accent)] opacity-60" />
         </header>
+
         {children}
       </div>
     </section>

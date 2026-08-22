@@ -2,17 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type ParsedMetric = {
-  raw: number;
-  suffix: string;
-  label: string;
-};
+type ParsedMetric = { raw: number; suffix: string; label: string };
 
 function parseMetricValue(value: string): { raw: number; suffix: string } {
-  // Remove commas, then match leading number and trailing suffix
-  // "5,000+" → "5000+" → raw:5000, suffix:"+"
-  // "60%"    → raw:60,   suffix:"%"
-  // "2+"     → raw:2,    suffix:"+"
   const cleaned = value.replace(/,/g, "");
   const match = cleaned.match(/^([\d.]+)(.*)$/);
   if (!match) return { raw: 0, suffix: value };
@@ -34,29 +26,24 @@ function CountUp({ raw, suffix }: { raw: number; suffix: string }) {
           started.current = true;
           const DURATION = 1600;
           const startTime = performance.now();
-
           const tick = (now: number) => {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / DURATION, 1);
-            // Ease-out cubic
             const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.round(eased * raw));
             if (progress < 1) requestAnimationFrame(tick);
           };
-
           requestAnimationFrame(tick);
           observer.disconnect();
         }
       },
       { threshold: 0.5 },
     );
-
     observer.observe(el);
     return () => observer.disconnect();
   }, [raw]);
 
   const formatted = count >= 1000 ? count.toLocaleString() : String(count);
-
   return (
     <span ref={spanRef}>
       {formatted}
@@ -65,9 +52,7 @@ function CountUp({ raw, suffix }: { raw: number; suffix: string }) {
   );
 }
 
-type MetricsCounterProps = {
-  metrics: { value: string; label: string }[];
-};
+type MetricsCounterProps = { metrics: { value: string; label: string }[] };
 
 export function MetricsCounter({ metrics }: Readonly<MetricsCounterProps>) {
   const parsed: ParsedMetric[] = metrics.map((m) => ({
@@ -78,8 +63,8 @@ export function MetricsCounter({ metrics }: Readonly<MetricsCounterProps>) {
   return (
     <div className="border-t border-b border-[var(--border)] py-8 grid grid-cols-2 gap-8 sm:grid-cols-4">
       {parsed.map((m) => (
-        <div key={m.label} className="flex flex-col gap-1.5">
-          <span className="font-display text-3xl sm:text-4xl text-[var(--fg)]">
+        <div key={m.label} className="flex flex-col gap-1.5 border-l-2 border-[var(--accent)] pl-4">
+          <span className="font-mono text-2xl sm:text-3xl font-bold text-[var(--accent)]">
             <CountUp raw={m.raw} suffix={m.suffix} />
           </span>
           <span className="font-mono text-[0.6rem] tracking-[0.22em] uppercase text-[var(--muted)] leading-relaxed">
