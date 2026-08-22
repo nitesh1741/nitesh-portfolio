@@ -1,57 +1,51 @@
 @import "tailwindcss";
 
-/* ─── Design Tokens ──────────────────────────────────────────────── */
+/* ─── Design Tokens ──────────────────────────────────────── */
 :root {
-  --bg: #f5f3ee;
-  --bg-alt: #efede7;
-  --surface: #ffffff;
-  --fg: #1c1c1a;
-  --fg-2: #3a3a37;
-  --muted: #7a756e;
-  --accent: #4d7a3e;
-  --accent-light: #e6f0e2;
-  --border: #e0ddd5;
-  --shadow-sm: 0 1px 4px rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 24px rgb(0 0 0 / 0.07);
-  --shadow-lg: 0 16px 48px rgb(0 0 0 / 0.09);
+  --bg:           #0a0a0a;
+  --bg-alt:       #111111;
+  --surface:      #161616;
+  --surface-2:    #1c1c1c;
+  --fg:           #f0f0ef;
+  --fg-2:         #a8a8a6;
+  --muted:        #666664;
+  --accent:       #4ade80;
+  --accent-dim:   #22c55e;
+  --accent-bg:    #0f1f0f;
+  --border:       #222220;
+  --border-2:     #2a2a28;
+  --terminal-bg:  #0d0d0d;
+  --terminal-bar: #1a1a1a;
+  --shadow-sm:    0 1px 4px rgb(0 0 0 / 0.4);
+  --shadow-md:    0 4px 24px rgb(0 0 0 / 0.6);
+  --shadow-lg:    0 16px 64px rgb(0 0 0 / 0.8);
+  --glow-accent:  0 0 24px rgb(74 222 128 / 0.12);
 }
 
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--fg);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans:    var(--font-geist-sans);
+  --font-mono:    var(--font-geist-mono);
   --font-display: var(--font-instrument-serif);
 }
 
+/* Dark theme (default — the only theme) */
 html[data-theme="dark"] {
-  --bg: #0e100a;
-  --bg-alt: #141710;
-  --surface: #171a10;
-  --fg: #f0ede6;
-  --fg-2: #cac7be;
-  --muted: #9e9b92;
-  --accent: #7db868;
-  --accent-light: #1b2614;
-  --border: #2a2e1f;
-  --shadow-sm: 0 1px 4px rgb(0 0 0 / 0.25);
-  --shadow-md: 0 4px 24px rgb(0 0 0 / 0.35);
-  --shadow-lg: 0 16px 48px rgb(0 0 0 / 0.45);
-}
-
-html[data-theme="light"] {
-  --bg: #f5f3ee;
-  --bg-alt: #efede7;
-  --surface: #ffffff;
-  --fg: #1c1c1a;
-  --fg-2: #3a3a37;
-  --muted: #7a756e;
-  --accent: #4d7a3e;
-  --accent-light: #e6f0e2;
-  --border: #e0ddd5;
-  --shadow-sm: 0 1px 4px rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 24px rgb(0 0 0 / 0.07);
-  --shadow-lg: 0 16px 48px rgb(0 0 0 / 0.09);
+  --bg:           #0a0a0a;
+  --bg-alt:       #111111;
+  --surface:      #161616;
+  --surface-2:    #1c1c1c;
+  --fg:           #f0f0ef;
+  --fg-2:         #a8a8a6;
+  --muted:        #666664;
+  --accent:       #4ade80;
+  --accent-dim:   #22c55e;
+  --accent-bg:    #0f1f0f;
+  --border:       #222220;
+  --border-2:     #2a2a28;
+  --terminal-bg:  #0d0d0d;
+  --terminal-bar: #1a1a1a;
 }
 
 body {
@@ -66,33 +60,61 @@ html {
   scrollbar-color: var(--accent) var(--bg);
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
   border-radius: 999px;
-  background: color-mix(in srgb, var(--accent) 50%, var(--bg));
+  background: color-mix(in srgb, var(--accent) 35%, var(--bg));
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 ::selection {
-  background: var(--accent-light);
-  color: var(--fg);
+  background: var(--accent-bg);
+  color: var(--accent);
 }
 
-section {
-  scroll-margin-top: 72px;
+section { scroll-margin-top: 72px; }
+
+/* ─── Hero Entry Animations ──────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Scroll Reveal ──────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *,
@@ -102,39 +124,4 @@ section {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* ─── Hero Entry Animations ──────────────────────────────────────── */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.animate-fade-in-up {
-  opacity: 0;
-  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-fade-in {
-  opacity: 0;
-  animation: fadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* ─── Scroll Reveal ──────────────────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
 }
