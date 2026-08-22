@@ -1,3 +1,5 @@
+"use client";
+
 import { projects } from "@/data/portfolio";
 import { Section } from "@/components/section";
 
@@ -23,8 +25,8 @@ export function ProjectsSection() {
               (e.currentTarget.style.boxShadow = "none")
             }
           >
-            {/* Project name */}
-            <h3 className="font-display text-xl text-[var(--fg)] mb-2">
+            {/* Fix 3: Project name with group-hover accent color */}
+            <h3 className="font-display text-xl text-[var(--fg)] mb-2 group-hover:text-[var(--accent)] transition-colors duration-200">
               {project.name}
             </h3>
 
@@ -33,20 +35,32 @@ export function ProjectsSection() {
               {project.description}
             </p>
 
-            {/* Tech chips */}
+            {/* Fix 1: Highlights — field exists in Project type */}
+            {project.highlights && project.highlights.length > 0 && (
+              <ul className="mb-4 space-y-1">
+                {project.highlights.map((h, i) => (
+                  <li key={i} className="flex gap-2 text-xs text-[var(--fg-2)]">
+                    <span className="text-[var(--accent-dim)] mt-0.5">▸</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {/* Fix 4: Tech chips with border-[var(--border)] instead of border-[var(--accent)] */}
             <div className="mb-4 flex flex-wrap gap-2">
               {project.stack.map((tech) => (
                 <span
                   key={tech}
-                  className="font-mono text-[0.62rem] px-2 py-0.5 border border-[var(--accent)] text-[var(--accent)] bg-[var(--accent-bg)]"
+                  className="font-mono text-[0.62rem] px-2 py-0.5 border border-[var(--border)] text-[var(--accent)] bg-[var(--accent-bg)]"
                 >
                   {tech}
                 </span>
               ))}
             </div>
 
-            {/* Links */}
-            <div className="flex gap-4">
+            {/* Fix 5: Links row with border-t separator; Fix 2: Case Study link added */}
+            <div className="mt-5 flex items-center gap-4 border-t border-[var(--border)] pt-4">
               {project.demo && (
                 <a
                   href={project.demo}
@@ -67,16 +81,22 @@ export function ProjectsSection() {
                   → GitHub
                 </a>
               )}
+              <a
+                href={`/projects/${project.slug}`}
+                className="font-mono text-xs text-[var(--fg-2)] hover:text-[var(--fg)] transition-colors"
+              >
+                Case Study →
+              </a>
             </div>
           </div>
         ))}
       </div>
 
-      {/* View all projects link */}
-      <div className="mt-10 text-center">
+      {/* Fix 6: View all projects with reveal, inline-flex, text-xs, tracking, uppercase */}
+      <div className="mt-10 text-center reveal">
         <a
           href="/projects"
-          className="font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+          className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] uppercase text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
         >
           View all projects →
         </a>
